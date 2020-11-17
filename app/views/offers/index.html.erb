@@ -1,10 +1,10 @@
 <div class="container">
   <% @offers.each do |offer| %>
     <div class="card-trip">
-      <img src="https://picsum.photos/825/200" />
+      <img src='https://picsum.photos/825/200/'/>
       <div class="card-trip-infos">
         <div>
-          <h2><%=offer.title%></h2>
+          <h2><%= link_to offer.title, offer_path(offer)%></h2>
           <p><%=offer.description%></p>
         </div>
           <h2 class="card-trip-pricing"><%=offer.price%>€</h2>
