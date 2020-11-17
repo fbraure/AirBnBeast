@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2020_11_17_102750) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "description"
+    t.bigint "offer_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offer_id"], name: "index_reviews_on_offer_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,6 +60,11 @@ ActiveRecord::Schema.define(version: 2020_11_17_102750) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   add_foreign_key "bookings", "offers"
   add_foreign_key "bookings", "users"
+=======
+  add_foreign_key "reviews", "offers"
+  add_foreign_key "reviews", "users"
+>>>>>>> master
 end
