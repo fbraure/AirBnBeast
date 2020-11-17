@@ -1,0 +1,42 @@
+$drop-size:10px;
+$flaque-size:50px;
+
+.drop{
+  position: absolute;
+  top: 86px;
+  left: 20px;
+  width: $drop-size;
+  height: $drop-size;
+  border-radius: 1em;
+  border-top-right-radius: 0.2em;
+  background: linear-gradient(to right, $blood1, $blood2);
+  animation: drops 2.5s linear infinite
+}
+.drop:nth-child(2){
+  left: 40px;
+  top: 66px;
+}
+
+  @keyframes drops{
+    0% {
+      opacity: 0.8;
+      transform: translateY(0vh)  rotate(-40deg);
+    }
+    90% {
+      opacity: 0.8;
+      transform: translateY(90vh) rotate(-40deg);
+    }
+    100% {
+      opacity: 0.8;
+      transform: translateY(90vh) rotate(-40deg);
+    }
+  }
+  .flaque{
+    position: absolute;
+    top: 98vh;
+    left: 00px;
+    width: 70px;
+    height: 20px;
+    background: linear-gradient(to right, $blood1, $blood2);
+    border-radius: 50%;
+  }
