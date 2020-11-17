@@ -1,0 +1,10 @@
+<!--  Afficher le nom de current_user -->
+<!--  Afficher la description de current_user -->
+<!--  Afficher les offres créé par current_user -->
+<% @offres.each do |offre| %>
+<%= offre.title %>
+<%= offre.description %>
+<%= offre.price %>
+<%= offre.time_slot %>
+<% end %>
+<!--  Afficher les offres achetés de current_user -->
