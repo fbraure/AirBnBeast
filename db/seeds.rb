@@ -43,3 +43,17 @@ puts "SEED: END POPULATE"
 # Valentin  : https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1574945472/mw3lw9ugd3aqt7abs7pk.jpg
 
 
+user1 = User.create!(
+  email: 'titi@gmail.com',
+  password: 'titi01@'
+)
+
+Offer.destroy_all
+
+Offer.create!(
+  title: 'Light & Spacious Garden Flat London',
+  description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
+  price: 75,
+  date: 20201225,
+  user: user1.id
+)
