@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :offers, only:[ :index, :search ]
 
   resources :offers do
+    collection do
+      get "/mine", to: "offers#mine"
+    end
     resources :reviews, only: [ :new, :create ]
   end
   resources :reviews, only: [ :destroy ]
