@@ -42,18 +42,45 @@ puts "SEED: END POPULATE"
 # Bertrand : https://avatars1.githubusercontent.com/u/9798952?v=4
 # Valentin  : https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1574945472/mw3lw9ugd3aqt7abs7pk.jpg
 
+require 'faker'
 
-user1 = User.create!(
-  email: 'titi@gmail.com',
-  password: 'titi01@'
-)
+puts 'Destroy all (users and offers'
 
+User.destroy_all
 Offer.destroy_all
 
-Offer.create!(
-  title: 'Light & Spacious Garden Flat London',
-  description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
-  price: 75,
-  date: 20201225,
-  user: user1.id
+
+puts 'Creating 2 fake sellers...'
+seller1 = User.create!(
+  email: 'seller1@gmail.com',
+  password: 'seller01@',
+  is_seller: true
 )
+seller2 = User.create!(
+  email: 'seller2@gmail.com',
+  password: 'seller02@',
+  is_seller: true
+)
+
+puts 'Creating 10 fake offers...'
+10.times do
+  offer = Offer.new(
+    title: Faker::Company.name,
+    description: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+    price: 75,
+   date: 20201225,
+   user: rand(1..2)
+  )
+  offer.save!
+end
+
+puts 'Creating 1 fake customer...'
+
+customer1 = User.create!(
+  email: 'customer1@gmail.com',
+  password: 'customer01@',
+  is_seller: false
+)
+
+puts 'Finished!'
+
