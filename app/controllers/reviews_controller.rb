@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
     # we need `offer_id` to associate review with corresponding offer
     @offer = Offer.find(params[:offer_id])
     @review.offer = @offer
+    @review.user = current_user
     if @review.save
       redirect_to offer_path(@offer)
     else
