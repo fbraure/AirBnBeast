@@ -60,11 +60,9 @@ ActiveRecord::Schema.define(version: 2020_11_17_102750) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-<<<<<<< HEAD
   add_foreign_key "bookings", "offers"
   add_foreign_key "bookings", "users"
-=======
   add_foreign_key "reviews", "offers"
   add_foreign_key "reviews", "users"
->>>>>>> master
+
 end
