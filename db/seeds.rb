@@ -66,10 +66,10 @@ puts 'Creating 10 fake offers...'
 10.times do
   offer = Offer.new(
     title: Faker::Company.name,
-    description: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-    price: 75,
-   date: 20201225,
-   user: rand(1..2)
+    description: Faker::Lorem.sentences,
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.forward(days: 90),
+    user: [seller1, seller2].sample
   )
   offer.save!
 end
