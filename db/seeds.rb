@@ -42,4 +42,45 @@ puts "SEED: END POPULATE"
 # Bertrand : https://avatars1.githubusercontent.com/u/9798952?v=4
 # Valentin  : https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1574945472/mw3lw9ugd3aqt7abs7pk.jpg
 
+require 'faker'
+
+puts 'Destroy all (users and offers'
+
+User.destroy_all
+Offer.destroy_all
+
+
+puts 'Creating 2 fake sellers...'
+seller1 = User.create!(
+  email: 'seller1@gmail.com',
+  password: 'seller01@',
+  is_seller: true
+)
+seller2 = User.create!(
+  email: 'seller2@gmail.com',
+  password: 'seller02@',
+  is_seller: true
+)
+
+puts 'Creating 10 fake offers...'
+10.times do
+  offer = Offer.new(
+    title: Faker::Company.name,
+    description: Faker::Lorem.sentences,
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.forward(days: 90),
+    user: [seller1, seller2].sample
+  )
+  offer.save!
+end
+
+puts 'Creating 1 fake customer...'
+
+customer1 = User.create!(
+  email: 'customer1@gmail.com',
+  password: 'customer01@',
+  is_seller: false
+)
+
+puts 'Finished!'
 
