@@ -2,12 +2,11 @@
   <div class="container">
     <h1>AirBnBeast</h1>
     <p>Let us help you !!! </p>
-    <div id="sign-buttons">
-      <%= link_to "SignIn", new_user_session_path, class: "btn btn-primary"%>
-      <%= link_to "SignUp", new_user_registration_path, class: "btn btn-primary"%>
-    </div>
-    <div id="sign-forms">
-      <%= render "devise/registrations/new" %>
+    <div class="container">
+      <div id="sign-buttons">
+        <%= link_to "SignIn", new_user_session_path, class: "btn btn-primary"%>
+        <%= link_to "SignUp", new_user_registration_path, class: "btn btn-primary"%>
+      </div>
     </div>
   </div>
 </div>
