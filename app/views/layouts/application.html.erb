@@ -7,11 +7,31 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+      <%= link_to root_path, class:"d-flex align-items-center navbar-brand m-0 p-0" do%>
+        <%#= image_tag("logo.png", alt: "AirBnBeast logo")%>
+        <h2>AirBnBeast</h2>
+      <%end%>
+      <%= form_tag(nil, method: "get", class: "form-inline my-2 my-lg-0") do%>
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+        <%= submit_tag 'Search', class: "btn btn-outline-danger my-2 my-sm-0" %>
+      <% end %>
+    </nav>
+    <%# <div class="drop"></div>
+    <div class="drop"></div>
+    <div class="flaque"></div> %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://picsum.photos/1200/800);">
+      <div class="container">
+        <h1>AirBnBeast</h1>
+        <p>Let us help you !!! </p>
+        <%= link_to "SignIn", nil, class: "btn btn-primary"%>
+        <%= link_to "SignUp", nil, class: "btn btn-primary"%>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
