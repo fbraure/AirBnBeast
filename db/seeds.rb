@@ -47,7 +47,7 @@ puts "SEED: START POPULATE BOOKINGS"
 # Une offre n'apparraitra pas deux fois
 Offer.first(12).shuffle.each do |offer|
   booking = Booking.new(
-    status: [0, 1, 1, 1],
+    status: [0, 1, 1, 1].sample,
     user: User.all.sample,
     offer: offer
   )
