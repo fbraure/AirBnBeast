@@ -2,10 +2,16 @@
 <!--  Afficher la description de current_user -->
 <!--  Afficher les offres créé par current_user -->
 <% @offers.each do |offer| %>
-<%#= offer.user_id %>
-<%#= offer.title %>
-<%= offer.description %>
-<%#= offer.price %>
-<%#= offer.date %>
+  <div>
+    <%= offer.user.first_name %> <!-- N'existe pas dans seed -->
+    <%= offer.user.last_name %>
+    <%= offer.user.email %> <!-- A enlever & Créer un champ description & avatar -->
+  </div>
+  <div>
+    <%= offer.title %>
+    <%= offer.description %>
+    <%= offer.price %>
+    <%= offer.date %>
+  </div>
 <% end %>
 <!--  Afficher les offres achetés de current_user -->
