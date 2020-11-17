@@ -46,8 +46,8 @@ require 'faker'
 
 puts 'Destroy all (users and offers'
 
-User.destroy_all
 Offer.destroy_all
+User.destroy_all
 
 
 puts 'Creating 2 fake sellers...'
@@ -66,7 +66,7 @@ puts 'Creating 10 fake offers...'
 10.times do
   offer = Offer.new(
     title: Faker::Company.name,
-    description: Faker::Lorem.sentences,
+    description: Faker::Lorem.sentences.join(" "),
     price: Faker::Number.number(digits: 3),
     date: Faker::Date.forward(days: 90),
     user: [seller1, seller2].sample
