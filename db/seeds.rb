@@ -33,7 +33,7 @@ customer1 = User.create!(
   is_seller: false
 )
 puts "SEED: START POPULATE OFFERS"
-  10.times do
+  12.times do
     offer = Offer.new(
       title: Faker::Company.name,
       description: Faker::Lorem.sentences.join(" "),
@@ -51,6 +51,15 @@ Offer.first(12).shuffle.each do |offer|
     user: User.all.sample,
     offer: offer
   )
+  if booking.save!
+    unless booking.status
+      Booking.new(
+        status: 1,
+        user: users.sample,
+        offer: offer
+      )
+    end
+  end
 end
 puts "SEED: END POPULATE"
 
