@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get "/mine", to: "offers#mine"
     end
     resources :reviews, only: [ :new, :create ]
+    resources :bookings, only: :create
   end
   resources :reviews, only: [ :destroy ]
 
