@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :offers
+  has_many :bookings
+  has_many :bookedoffers, through: :offers
   validates :avatar_url, presence: true
 end

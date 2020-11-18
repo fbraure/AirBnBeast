@@ -15,8 +15,10 @@ class OffersController < ApplicationController
 
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
-    @offers = Offer.where(user: current_user)
+    # @offers = Offer.where(user: current_user)
     @user = current_user
+    @offers = @user.offers
     # Trouver les offres que user a achete pour les afficher
+    # @bookedoffers = @user.bookedoffers
   end
 end
