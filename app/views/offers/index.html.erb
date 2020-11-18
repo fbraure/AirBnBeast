@@ -1,7 +1,7 @@
 <div class= "cards">
   <% @offers.each do |offer| %>
     <div class="card-trip">
-      <img class="img-fluid" src=<%=offer.photo_url%> alt="offer photo"/>
+      <%= image_tag(offer.photo_url, class:"img-fluid") %>
       <div class="card-trip-infos">
         <div>
           <h3><%= link_to offer.title, offer_path(offer)%></h3>
@@ -10,7 +10,7 @@
           <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
         </div>
           <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
-          <img src=<%=offer.user.avatar_url%> class="card-trip-user avatar-bordered" />
+          <%=image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
       </div>
     </div>
   <%end%>

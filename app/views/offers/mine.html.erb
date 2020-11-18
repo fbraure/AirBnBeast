@@ -1,23 +1,23 @@
 <!--  Afficher les offres créé par current_user -->
 <div class="container">
   <div class="profil">
-    <img class="avatar-large" alt="avatar-large" src=<%= @user.avatar_url %> />
+    <%=image_tag(@user.avatar_url, class:"avatar-large")%>
     <div class="profil-content">
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      <p><%= @user.description %></p> <!-- A enlever & Créer un champ description -->
+      <h2><%=@user.first_name%> <%=@user.last_name%></h2>
+      <p><%=@user.description%></p> <!-- A enlever & Créer un champ description -->
     </div>
   </div>
   <div class="cards">
     <% @offers.each do |offer| %>
       <div class="card-trip">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
+        <%=image_tag(offer.photo_url)%>
         <div class="card-trip-infos">
           <div>
-            <h3><%= offer.title %></h3>
-            <p><%= offer.description %></p>
-            <p><%= offer.date %></p>
+            <h3><%=offer.title%></h3>
+            <p><%=offer.description%></p>
+            <p><%=offer.date%></p>
           </div>
-            <h3><%= offer.price %>€</h3>
+            <h3><%=offer.price%>€</h3>
         </div>
       </div>
     <% end %>
