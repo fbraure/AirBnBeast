@@ -1,15 +1,19 @@
-<div class="container">
+<div class= "cards">
   <% @offers.each do |offer| %>
     <div class="card-trip">
-      <img src='https://picsum.photos/825/200/'/>
+      <img class="img-fluid" src=<%=offer.photo_url%> alt="offer photo"/>
       <div class="card-trip-infos">
         <div>
-          <h2><%= link_to offer.title, offer_path(offer)%></h2>
+          <h3><%= link_to offer.title, offer_path(offer)%></h3>
           <p><%=offer.description%></p>
+          <p><%=offer.date%></p>
+          <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
         </div>
-          <h2 class="card-trip-pricing"><%=offer.price%>€</h2>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
+          <img src=<%=offer.user.avatar_url%> class="card-trip-user avatar-bordered" />
       </div>
     </div>
   <%end%>
 </div>
+
+
