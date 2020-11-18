@@ -26,7 +26,7 @@
         <% end %>
         <%= link_to (user_signed_in? ? mine_offers_path : nil) do %>
           <% if user_signed_in? %>
-            <img class="avatar"  src=<%=current_user.avatar_url%> />
+            <%=image_tag(current_user.avatar_url, class:"avatar")%>
           <% else %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
