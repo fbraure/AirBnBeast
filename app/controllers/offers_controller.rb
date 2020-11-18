@@ -10,6 +10,11 @@ class OffersController < ApplicationController
     end
   end
 
+  def show
+    @offer = Offer.find(params[:id])
+    @seller = "#{@offer.user.first_name} #{@offer.user.last_name}"
+  end
+
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
     @offers = Offer.where(user: current_user).reverse
