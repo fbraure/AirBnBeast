@@ -22,6 +22,20 @@ class OffersController < ApplicationController
     # Trouver les offres que user a achete pour les afficher
   end
 
+  def new
+    @offer = Offer.new
+  end
+
+  def create
+    @offer = Offer.new(offer_params)
+    @offer.user = current_user
+    if @offer.save!
+      redirect_to offer_path(@offer)
+    else
+      render 'new'
+    end
+  end
+
   def edit
   end
 
