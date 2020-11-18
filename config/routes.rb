@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :offers, only:[ :index, :search ]
+
+  get "offers/search", to: "offers#search"
+
+  resources :offers, only:[ :index ]
+
 
   resources :offers do
     collection do
