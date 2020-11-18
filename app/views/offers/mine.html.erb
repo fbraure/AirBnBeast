@@ -4,31 +4,32 @@
     <img class="avatar-large" alt="avatar-large" src=<%= @user.avatar_url %> />
     <div class="profil-content">
       <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      <p><%= @user.description %></p> <!-- A enlever & Créer un champ description -->
+      <p><%= @user.description %>
     </div>
   </div>
     <h3>Mes Services Achetés</h3>
-  <div class="cards border rounded">
-    <% @offers.each do |offer| %>
-      <div class="card-product">
-        <%= image_tag offer.photo_url%>
-        <div class="card-product-infos">
-          <h4><%= offer.title %></h4>
-          <p><%= offer.description %></p>
-          <p><%= offer.date %></p>
-          <h5><%= offer.price %>€</h5>
-        </div>
-        <%= image_tag offer.user.avatar_url, class: "avatar-large"%>
-      </div>
-    <% end %>
-  </div>
-    <h3>Mes Services Proposés</h3>
   <div class="border rounded">
     <% @booked_offers.each do |offer| %>
       <div class="card-product">
         <%= image_tag offer.photo_url%>
         <div class="card-product-infos">
-          <h4><%= offer.title %></h4>
+          <h5><%= offer.title %></h5>
+          <p><%= offer.description %></p>
+          <p><%= offer.date %></p>
+          <h5><%= offer.price %>€</h5>
+        </div>
+        <%= image_tag offer.user.avatar_url, class: "avatar"%>
+      </div>
+    <% end %>
+  </div>
+  <br/>
+  <h3>Mes Services Proposés</h3>
+  <div class="border rounded">
+    <% @offers.each do |offer| %>
+      <div class="card-product">
+        <%= image_tag offer.photo_url%>
+        <div class="card-product-infos">
+          <h5><%= offer.title %></h5>
           <p><%= offer.description %></p>
           <p><%= offer.date %></p>
           <h5><%= offer.price %>€</h5>

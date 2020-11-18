@@ -116,14 +116,14 @@ puts "SEED: END POPULATE"
 
 # secret seed (false => true pour activer)
 return unless ENV["secret"] || true
-
+# Les cloudinary posent pb
 wagonners = [
   ["violaine", "https://avatars1.githubusercontent.com/u/70322815?v=4"],
   ["anne-cecile", "https://avatars3.githubusercontent.com/u/34253262?v=4"],
   ["charlotte", "https://avatars2.githubusercontent.com/u/70255612?v=4"],
   ["matthias", "https://avatars2.githubusercontent.com/u/48900320?v=4"],
   ["Florent", "https://avatars2.githubusercontent.com/u/65367849?v=4"],
-  ["Mael", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1601908758/rtos8nfz2zacii2dndkc.jpg"],
+  # ["Mael", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1601908758/rtos8nfz2zacii2dndkc.jpg"],
   ["Baptiste", "https://avatars3.githubusercontent.com/u/66240536?v=4"],
   ["Julie", "https://avatars3.githubusercontent.com/u/66240536?v=4"],
   ["Hugo", "https://avatars0.githubusercontent.com/u/69712961?v=4"],
@@ -135,14 +135,14 @@ wagonners = [
   ["Remi", "https://avatars1.githubusercontent.com/u/55163524?v=4"],
   ["Jasmine", "https://avatars1.githubusercontent.com/u/71343481?v=4"],
   ["Thomas", "https://avatars0.githubusercontent.com/u/69688905?v=4"],
-  ["manu", " https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1535441137/yrwdxzada2biesrzqgeb.jpg"],
+  # ["manu", " https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1535441137/yrwdxzada2biesrzqgeb.jpg"],
   ["claudine", "https://avatars0.githubusercontent.com/u/34744530?v=4"],
-  ["Benoit", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1572301074/y7bljjqfaifhvzaqyvza.jpg"],
-  ["Sylvain", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1540307110/x6vx55r27uspuk5qllnh.jpg"],
+  # ["Benoit", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1572301074/y7bljjqfaifhvzaqyvza.jpg"],
+  # ["Sylvain", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1540307110/x6vx55r27uspuk5qllnh.jpg"],
   ["Charles-Henri", "https://avatars1.githubusercontent.com/u/31434839?v=4"],
-  ["Jonathan", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1495543370/jerclbbakoluf9xjpkrc.jpg"],
+  # ["Jonathan", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1495543370/jerclbbakoluf9xjpkrc.jpg"],
   ["Bertrand", "https://avatars1.githubusercontent.com/u/9798952?v=4"],
-  ["Valentin ", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1574945472/mw3lw9ugd3aqt7abs7pk.jpg"]
+  # ["Valentin ", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1574945472/mw3lw9ugd3aqt7abs7pk.jpg"]
 ]
 nicknames = [
   # Le boolean est vrai si le NickName se place Après le prénom
@@ -235,9 +235,7 @@ titouan = User.create!(
   description: description
   # is_seller: true
 )
-end
-18.times do
-  wagonner = wagonners.sample
+wagonners.shuffle.first(18).each do |wagonner|
   nickname = nicknames.sample
   description = descriptions.sample
   User.create!(
@@ -249,13 +247,10 @@ end
     description: description
     # is_seller: true
   )
-   # Pour éviter 2x les doublons
-  wagonners.delete(wagonner)
-  descriptions.delete(description)
 end
 puts "SECRET SEED: START POPULATE OFFERS"
 users = User.all
-5.times do
+7.times do
   prank = pranks.sample
   target = users.reject{|user| user == titouan }.sample
   Offer.create!(
@@ -263,38 +258,54 @@ users = User.all
     description: prank[1],
     price: Faker::Number.number(digits: 3),
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
-    user: users.sample,
-    target: "",
+    user: titouan,
+    target: "#{target.first_name} #{target.last_name}",
     photo_url: Faker::LoremPixel.image(size: "50x50", is_gray: true)
   )
 end
 24.times do
   prank = pranks.sample
-  buyer = users.sample
-  target = users.reject{|user| user == buyer }.sample
+  bad_boy = users.reject{|user| user == titouan }.sample
+  target = users.reject{|user| user == bad_boy || user == titouan}.sample
   Offer.create!(
     title: prank[0],
     description: prank[1],
     price: Faker::Number.number(digits: 3),
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
-    user: users.sample,
+    user: bad_boy,
     target: "#{target.first_name} #{target.last_name}",
     photo_url: Faker::LoremPixel.image(size: "50x50", is_gray: true)
   )
 end
 puts "SECRET SEED: START POPULATE BOOKINGS"
-Offer.all.first(18).shuffle.each do |offer|
-  killer = users.reject{|user| user == offer.user && "#{user.first_name} #{user.last_name}" == offer.target}.sample
+Offer.all.shuffle.reject{|offer| offer.user == titouan || "#{titouan.first_name} #{titouan.last_name}" == offer.target}.first(5).each do |offer|
   booking = Booking.new(
     status: [0, 1, 1, 1].sample,
-    user: killer,
+    user: titouan,
+    offer: offer
+  )
+  if booking.save!
+    unless booking.status
+      Booking.new(
+        status: 1,
+        user: titouan,
+        offer: offer
+      )
+    end
+  end
+end
+Offer.all.shuffle.first(18).each do |offer|
+  buyer = users.reject{|user| user == offer.user && "#{user.first_name} #{user.last_name}" == offer.target}.sample
+  booking = Booking.new(
+    status: [0, 1, 1, 1].sample,
+    user: buyer,
     offer: offer,
   )
   if booking.save!
     unless booking.status
       Booking.new(
         status: 1,
-        user: killer,
+        user: buyer,
         offer: offer
       )
     end
