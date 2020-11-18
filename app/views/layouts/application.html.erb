@@ -28,7 +28,7 @@
           <% if user_signed_in? %>
             <img class="avatar"  src=<%=current_user.avatar_url%> />
           <% else %>
-            <i class="fas fa-user-circle"></i>
+            <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         <% end %>
       </div>
@@ -37,8 +37,6 @@
     <div class="drop"></div>
     <div class="flaque"></div> %>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= render 'shared/flashes' %>
 
     <div class="footer">
