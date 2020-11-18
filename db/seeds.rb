@@ -115,7 +115,7 @@ end
 puts "SEED: END POPULATE"
 
 # secret seed (false => true pour activer)
-return unless ENV["secret"] || false
+return unless ENV["secret"] || true
 
 wagonners = [
   ["violaine", "https://avatars1.githubusercontent.com/u/70322815?v=4"],
@@ -223,19 +223,19 @@ Review.destroy_all
 Offer.destroy_all
 User.destroy_all
 puts "SECRET SEED: START POPULATE USERS"
-#login toujours present pour test
 wagonner = ["Titouan", "https://avatars3.githubusercontent.com/u/71375669?v=4"]
 nickname = nicknames.sample
 description = descriptions.sample
-User.create!(
-    first_name: nickname[1] ? wagonner[0].capitalize : nickname[0].capitalize,
-    last_name: nickname[1] ? nickname[0].capitalize : wagonner[0].capitalize,
-    email: "#{wagonner[0].strip.downcase}@test.fr",
-    password: "wagonner",
-    avatar_url: wagonner[1],
-    description: description
-    # is_seller: true
-  )
+titouan = User.create!(
+  first_name: nickname[1] ? wagonner[0].capitalize : nickname[0].capitalize,
+  last_name: nickname[1] ? nickname[0].capitalize : wagonner[0].capitalize,
+  email: "#{wagonner[0].strip.downcase}@test.fr",
+  password: "wagonner",
+  avatar_url: wagonner[1],
+  description: description
+  # is_seller: true
+)
+end
 18.times do
   wagonner = wagonners.sample
   nickname = nicknames.sample
@@ -255,6 +255,19 @@ User.create!(
 end
 puts "SECRET SEED: START POPULATE OFFERS"
 users = User.all
+5.times do
+  prank = pranks.sample
+  target = users.reject{|user| user == titouan }.sample
+  Offer.create!(
+    title: prank[0],
+    description: prank[1],
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
+    user: users.sample,
+    target: "",
+    photo_url: Faker::LoremPixel.image(size: "50x50", is_gray: true)
+  )
+end
 24.times do
   prank = pranks.sample
   buyer = users.sample
@@ -266,7 +279,7 @@ users = User.all
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
     user: users.sample,
     target: "#{target.first_name} #{target.last_name}",
-    photo_url: Faker::LoremPixel.image
+    photo_url: Faker::LoremPixel.image(size: "50x50", is_gray: true)
   )
 end
 puts "SECRET SEED: START POPULATE BOOKINGS"

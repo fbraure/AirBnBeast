@@ -7,36 +7,33 @@
       <p><%= @user.description %></p> <!-- A enlever & Créer un champ description -->
     </div>
   </div>
-  <div class="cards">
+    <h3>Mes Services Achetés</h3>
+  <div class="cards border rounded">
     <% @offers.each do |offer| %>
-      <div class="card-trip">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
-        <div class="card-trip-infos">
-          <div>
-            <h3><%= offer.title %></h3>
-            <p><%= offer.description %></p>
-            <p><%= offer.date %></p>
-          </div>
-            <h3><%= offer.price %>€</h3>
+      <div class="card-product">
+        <%= image_tag offer.photo_url%>
+        <div class="card-product-infos">
+          <h4><%= offer.title %></h4>
+          <p><%= offer.description %></p>
+          <p><%= offer.date %></p>
+          <h5><%= offer.price %>€</h5>
+        </div>
+        <%= image_tag offer.user.avatar_url, class: "avatar-large"%>
+      </div>
+    <% end %>
+  </div>
+    <h3>Mes Services Proposés</h3>
+  <div class="border rounded">
+    <% @booked_offers.each do |offer| %>
+      <div class="card-product">
+        <%= image_tag offer.photo_url%>
+        <div class="card-product-infos">
+          <h4><%= offer.title %></h4>
+          <p><%= offer.description %></p>
+          <p><%= offer.date %></p>
+          <h5><%= offer.price %>€</h5>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
-<!--  Afficher les offres achetés par current_user -->
-
-<!-- <h2>Booked Offers</h2>
-<%#= @bookedoffers.each do |offer| %>
-  <div class="card-trip">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
-        <div class="card-trip-infos">
-          <div>
-            <h3><%#= offer.title %></h3>
-            <p><%#= offer.description %></p>
-            <p><%#= offer.date %></p>
-          </div>
-            <h3><%#= offer.price %>€</h3>
-        </div>
-      </div>
-<%# end %> -->

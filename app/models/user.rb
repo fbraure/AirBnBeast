@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :offers
   has_many :bookings
-# has_many :booked_offers, through: :offers
+  has_many :booked_offers, :through => :bookings, :source => :offer
   validates :avatar_url, presence: true
 end

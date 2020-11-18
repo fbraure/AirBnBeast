@@ -32,11 +32,15 @@ $flaque-size:50px;
     }
   }
   .flaque{
-    position: absolute;
-    top: 98vh;
-    left: 00px;
     width: 70px;
     height: 20px;
+
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1031;
+
     background: linear-gradient(to right, $blood1, $blood2);
     border-radius: 50%;
   }

@@ -13,7 +13,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
       <%= link_to (user_signed_in? ? offers_path : root_path), class:"d-flex align-items-center navbar-brand m-0 p-0" do%>
-        <%#= image_tag("logo.png", alt: "AirBnBeast logo")%>
+        <%= image_tag("logo.png", alt: "AirBnBeast logo")%>
         <h2>AirBnBeast</h2>
       <%end%>
       <div class="right d-flex">
@@ -33,15 +33,14 @@
         <% end %>
       </div>
     </nav>
-    <%# <div class="drop"></div>
     <div class="drop"></div>
-    <div class="flaque"></div> %>
+    <div class="drop"></div>
     <%= yield %>
     <%= render 'shared/flashes' %>
 
-    <div class="footer fixed-bottom">
-      Made with <i class="fas fa-heart"></i> by AirBnBeast
-      <!-- <i class="fas fa-skull-crossbones"></i> -->
+    <div class="footer fixed-bottom ">
+      <div class="flaque"></div>
+      <i class="fas fa-skull-crossbones p-2"></i>by AirBnBeast
     </div>
   </body>
 </html>
