@@ -1,0 +1,20 @@
+.search-form-control {
+  position: relative;
+}
+
+.search-form-control .btn {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  right: 2px;
+}
+
+.search-form-control .btn-flat {
+  color: red;
+}
+
+.search-form-control .form-control {
+  height: 2.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #E7E7E7;
+}
