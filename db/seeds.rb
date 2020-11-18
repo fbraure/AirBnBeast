@@ -5,6 +5,18 @@ Review.destroy_all
 Offer.destroy_all
 User.destroy_all
 puts "SEED: START POPULATE USERS"
+wagonner = ["Titouan", "https://avatars3.githubusercontent.com/u/71375669?v=4"]
+nickname = ""
+description = "Il est beau, Titouan"
+User.create!(
+    first_name: "Titouan",
+    last_name: "JOLI",
+    email: "titouan@test.fr",
+    password: "wagonner",
+    avatar_url: "https://avatars3.githubusercontent.com/u/71375669?v=4",
+    description: "Je suis sexy !! "
+    # is_seller: true
+  )
 seller1 = User.create!(
   first_name: "Patrick",
   last_name: "ABIDBOL",
