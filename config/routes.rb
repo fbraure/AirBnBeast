@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
 
-  get "offers/search", to: "offers#search"
+  # get "offers/search", to: "offers#search"
 
   resources :offers, only:[ :index ]
 
 
-  resources :offers do
+  resources :offers, except: [ :index ] do
     collection do
       get "/mine", to: "offers#mine"
     end
