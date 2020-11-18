@@ -1,26 +1,27 @@
 <!--  Afficher les offres créé par current_user -->
 <div class="container">
   <div class="profil">
-    <img class="avatar-large" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+    <img class="avatar-large" alt="avatar-large" src=<%= @user.avatar_url %> />
     <div class="profil-content">
-      <h2>Paul<%= @user.first_name %> <!-- N'existe pas dans seed -->
-      <%= @user.last_name %></h2>
-      <p><%= @user.email %></p> <!-- A enlever & Créer un champ description -->
+      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <p><%= @user.description %></p> <!-- A enlever & Créer un champ description -->
     </div>
   </div>
-  <% @offers.each do |offer| %>
-    <div class="card-trip">
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
-      <div class="card-trip-infos">
-        <div>
-          <h2><%= offer.title %></h2>
-          <p><%= offer.description %></p>
-          <p><%= offer.date %></p>
+  <div class="cards">
+    <% @offers.each do |offer| %>
+      <div class="card-trip">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
+        <div class="card-trip-infos">
+          <div>
+            <h3><%= offer.title %></h3>
+            <p><%= offer.description %></p>
+            <p><%= offer.date %></p>
+          </div>
+            <h3><%= offer.price %>€</h3>
         </div>
-        <h2><%= offer.price %> €</h2>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 <!--  Afficher les offres achetés par current_user -->
