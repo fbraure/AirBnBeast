@@ -11,6 +11,12 @@
   width: 40px;
 }
 
+$oswald: 'Oswald', sans-serif;
+$teko: 'Teko', sans-serif;
+
+#nav-title {
+  font-family: $teko;
+}
 
 .fa-user-circle {
   color: grey;
