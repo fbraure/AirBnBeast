@@ -39,7 +39,9 @@ puts "SEED: START POPULATE OFFERS"
       description: Faker::Lorem.sentences.join(" "),
       price: Faker::Number.number(digits: 3),
       date: Faker::Date.forward(days: 90),
-      user: [seller1, seller2].sample
+      user: [seller1, seller2].sample,
+      target: Faker::Sports::Football.player,
+      photo_url: Faker::LoremPixel.image
     )
     offer.save!
   end
@@ -204,28 +206,33 @@ User.create!(
 end
 puts "SECRET SEED: START POPULATE OFFERS"
 users = User.all
-  24.times do
-    prank = pranks.sample;
-    Offer.create!(
-      title: prank[0],
-      description: prank[1],
-      price: Faker::Number.number(digits: 3),
-      date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
-      user: users.sample
-    )
-  end
+24.times do
+  prank = pranks.sample
+  buyer = users.sample
+  target = users.reject{|user| user == buyer }.sample
+  Offer.create!(
+    title: prank[0],
+    description: prank[1],
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
+    user: users.sample,
+    target: "#{target.first_name} #{target.last_name}",
+    photo_url: Faker::LoremPixel.image
+  )
+end
 puts "SECRET SEED: START POPULATE BOOKINGS"
 Offer.all.first(18).shuffle.each do |offer|
+  killer = users.reject{|user| user == offer.user && "#{user.first_name} #{user.last_name}" == offer.target}.sample
   booking = Booking.new(
     status: [0, 1, 1, 1].sample,
-    user: users.sample,
-    offer: offer
+    user: killer,
+    offer: offer,
   )
   if booking.save!
     unless booking.status
       Booking.new(
         status: 1,
-        user: users.sample,
+        user: killer,
         offer: offer
       )
     end
