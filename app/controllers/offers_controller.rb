@@ -18,7 +18,7 @@ class OffersController < ApplicationController
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
     @user = current_user
-    @offers = @user.offers
+    @offers = @user.offers.reverse
     # Trouver les offres que user a achete pour les afficher
     # @booked_offers = @user.booked_offers
   end
