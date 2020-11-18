@@ -5,6 +5,18 @@ Review.destroy_all
 Offer.destroy_all
 User.destroy_all
 puts "SEED: START POPULATE USERS"
+wagonner = ["Titouan", "https://avatars3.githubusercontent.com/u/71375669?v=4"]
+nickname = ""
+description = "Il est beau, Titouan"
+titouan = User.create!(
+    first_name: "Titouan",
+    last_name: "JOLI",
+    email: "titouan@test.fr",
+    password: "wagonner",
+    avatar_url: "https://avatars3.githubusercontent.com/u/71375669?v=4",
+    description: "Je suis sexy !! "
+    # is_seller: true
+  )
 seller1 = User.create!(
   first_name: "Patrick",
   last_name: "ABIDBOL",
@@ -33,19 +45,56 @@ customer1 = User.create!(
   is_seller: false
 )
 puts "SEED: START POPULATE OFFERS"
-  12.times do
-    offer = Offer.new(
-      title: Faker::Company.name,
-      description: Faker::Lorem.sentences.join(" "),
-      price: Faker::Number.number(digits: 3),
-      date: Faker::Date.forward(days: 90),
-      user: [seller1, seller2].sample,
-      target: Faker::Sports::Football.player,
-      photo_url: Faker::LoremPixel.image
-    )
-    offer.save!
-  end
+3.times do
+  Offer.create!(
+    title: Faker::Company.name,
+    description: Faker::Lorem.sentences.join(" "),
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.forward(days: 90),
+    user: titouan,
+    target: Faker::Sports::Football.player,
+    photo_url: Faker::LoremPixel.image
+  )
+end
+12.times do
+  offer = Offer.new(
+    title: Faker::Company.name,
+    description: Faker::Lorem.sentences.join(" "),
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.forward(days: 90),
+    user: [seller1, seller2].sample,
+    target: Faker::Sports::Football.player,
+    photo_url: Faker::LoremPixel.image
+  )
+  offer.save!
+end
 puts "SEED: START POPULATE BOOKINGS"
+booking = Booking.create(
+  status: 1,
+  user: titouan,
+  offer: Offer.create(
+    title: Faker::Company.name,
+    description: Faker::Lorem.sentences.join(" "),
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.forward(days: 90),
+    user: [seller1, seller2].sample,
+    target: Faker::Sports::Football.player,
+    photo_url: Faker::LoremPixel.image
+  )
+)
+booking = Booking.create(
+  status: 0,
+  user: titouan,
+  offer: Offer.create(
+    title: Faker::Company.name,
+    description: Faker::Lorem.sentences.join(" "),
+    price: Faker::Number.number(digits: 3),
+    date: Faker::Date.forward(days: 90),
+    user: [seller1, seller2].sample,
+    target: Faker::Sports::Football.player,
+    photo_url: Faker::LoremPixel.image
+  )
+)
 # Une offre n'apparraitra pas deux fois
 Offer.first(12).shuffle.each do |offer|
   booking = Booking.new(
