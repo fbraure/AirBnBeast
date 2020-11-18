@@ -54,12 +54,16 @@ puts 'Creating 2 fake sellers...'
 seller1 = User.create!(
   email: 'seller1@gmail.com',
   password: 'seller01@',
-  is_seller: true
+  is_seller: true,
+  first_name: "Pablo",
+  last_name: "Escobar"
 )
 seller2 = User.create!(
   email: 'seller2@gmail.com',
   password: 'seller02@',
-  is_seller: true
+  is_seller: true,
+  first_name: "Griselda",
+  last_name: "Blanco"
 )
 
 puts 'Creating 10 fake offers...'
