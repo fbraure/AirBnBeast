@@ -15,6 +15,15 @@ class OffersController < ApplicationController
     @seller = "#{@offer.user.first_name} #{@offer.user.last_name}"
   end
 
+  def new
+    @offer = Offer.new
+  end
+
+  def create
+    offer = Offer.new(offer_params)
+    offer.save
+    redirect_to mine_offers_path
+
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
     @offers = Offer.where(user: current_user).reverse
