@@ -24,8 +24,12 @@
         <%= link_to_if(user_signed_in?, "Log Out", destroy_user_session_path, class:"btn btn-outline-danger my-2 my-sm-0 ml-1", method:"delete") do %>
           <%= link_to "Log Out", nil, class:"btn btn-outline-danger my-2 my-sm-0 ml-1 disabled" %>
         <% end %>
-        <%= link_to mine_offers_path do %>
-          <img class="avatar"  src=<%= current_user.avatar_url %> />
+        <%= link_to (user_signed_in? ? mine_offers_path : nil) do %>
+          <% if user_signed_in? %>
+            <img class="avatar"  src=<%=current_user.avatar_url%> />
+          <% else %>
+            <i class="fas fa-user-circle"></i>
+          <% end %>
         <% end %>
       </div>
     </nav>
