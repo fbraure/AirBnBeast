@@ -20,7 +20,7 @@ class OffersController < ApplicationController
     @user = current_user
     @offers = @user.offers
     # Trouver les offres que user a achete pour les afficher
-    # @bookedoffers = @user.bookedoffers
+    # @booked_offers = @user.booked_offers
   end
 
   private
