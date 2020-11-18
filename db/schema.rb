@@ -1,4 +1,4 @@
-    # This file is auto-generated from the current state of the database. Instead
+# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_114919) do
+ActiveRecord::Schema.define(version: 2020_11_18_000554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "status", default: 1
+    t.integer "status"
     t.bigint "user_id", null: false
     t.bigint "offer_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2020_11_17_114919) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.string "photo_url"
+    t.string "target"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
@@ -58,6 +60,8 @@ ActiveRecord::Schema.define(version: 2020_11_17_114919) do
     t.string "last_name"
     t.boolean "is_seller"
     t.integer "stars"
+    t.string "avatar_url"
+    t.string "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
