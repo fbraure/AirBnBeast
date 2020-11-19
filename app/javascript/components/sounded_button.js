@@ -1,18 +1,10 @@
-// const addSoundsOnClick = () => {
-//   // debugger;
+ const getRandomInt = (max) => {
+  return Math.floor(Math.random() * Math.floor(max));
+};
 
-//   // const path = `sound_${getRandomInt(5)}.mp3`;
-//   const path = `/assets/sounds/test.mp3`;
-//   const buttons = document.querySelectorAll(".btn-sounded");
-//   buttons.forEach((button) => {
-//     console.log(button);
-//     button.addEventListener("click", (event) => {
-//       console.log("click");
-//       // const path = `sound_${getRandomInt(5)}.mp3`;
-//       const audio = new Audio(path);
-//       audio.play();
-//     });
-//   });
-// };
-
-// export {addSoundsOnClick};
+const buttons = document.addEventListener("click", (event) => {
+  if (event.target.classList.contains('btn-sounded')) {
+    const audioElt = document.getElementById(`audio-play_${getRandomInt(5)}`);
+    audioElt.play();
+  }
+});

@@ -20,7 +20,7 @@
     <div class="zone-book">
       <h3><%= @offer.price %>€</h3>
       <div>
-        <button id="sweet-alert-demo" class="btn btn-danger btn-book">Book me!</button>
+        <%= button_tag "Book me!", id: "sweet-alert-demo", class: "btn btn-danger btn-book btn-sounded" %>
         <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, id: "book-link", class: "d-none" %>
       </div>
     </div>

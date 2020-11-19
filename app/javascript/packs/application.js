@@ -25,20 +25,13 @@ require("channels")
 // External imports
 import "bootstrap";
 
-const button = document.getElementById("nav-title");
-button.addEventListener("click", (event) => {
-  console.log("sound");
-  const test = document.querySelector(".audio-play");
-  debugger;
-  test.play();
-});
-
   // // Internal imports
-  // import {addSoundsOnClick} from "../components/sounded_button.js";
+import {addSoundsOnClick} from "../components/sounded_button";
 import { superInitSweetAlert } from '../plugins/init_sweetalert';
 import { loadDynamicBannerText } from '../components/banner.js';
 
 document.addEventListener('turbolinks:load', () => {
   superInitSweetAlert();
+  addSoundsOnClick();
   loadDynamicBannerText();
 });
