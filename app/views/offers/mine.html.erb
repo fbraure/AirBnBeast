@@ -23,7 +23,9 @@
   </ul>
 
   <% ["bought", "used", "cancelled", "proposed"].each do |offer_type| %>
+    <% if @offer_type ==  "proposed"%>
 
+    <% end %>
     <% if @offer_type == offer_type %>
       <% @offers.each do |offer| %>
           <div class="card-product">
