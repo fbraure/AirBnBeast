@@ -34,11 +34,14 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initSweetalert('#sweet-alert-demo', {
-  title: "A nice alert",
-  text: "This is a great alert, isn't it?",
+  title: "Your booking is confirm",
+  text: "Happy murder",
   icon: "success"
   }, (value) => {
-    console.log(value);
+    if (value) {
+      const link = document.querySelector('#book-link');
+      link.click();
+    };
   });
 });
 
