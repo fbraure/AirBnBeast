@@ -1,122 +1,6 @@
 require 'faker'
-puts "SEED: START CLEAR"
-Booking.destroy_all
-Review.destroy_all
-Offer.destroy_all
-User.destroy_all
-puts "SEED: START POPULATE USERS"
-wagonner = ["Titouan", "https://avatars3.githubusercontent.com/u/71375669?v=4"]
-nickname = ""
-description = "Il est beau, Titouan"
-titouan = User.create!(
-    first_name: "Titouan",
-    last_name: "JOLI",
-    email: "titouan@test.fr",
-    password: "wagonner",
-    avatar_url: "https://avatars3.githubusercontent.com/u/71375669?v=4",
-    description: "Je suis sexy !! "
-    # is_seller: true
-  )
-seller1 = User.create!(
-  first_name: "Patrick",
-  last_name: "ABIDBOL",
-  email: 'seller1@gmail.com',
-  password: 'seller01@',
-  description: "It's raining men ,alleluia !",
-  avatar_url: "https://kitt.lewagon.com/placeholder/users/random",
-  is_seller: true
-)
-seller2 = User.create!(
-  first_name: "John F.",
-  last_name: "KENNEDY",
-  email: 'seller2@gmail.com',
-  password: 'seller02@',
-  description: "What else...",
-  avatar_url: "https://kitt.lewagon.com/placeholder/users/random",
-  is_seller: true
-)
-customer1 = User.create!(
-  first_name: "La Petite",
-  last_name: "SIRENE",
-  description: "Sur la plage abandonnée... Coquillages et crustacés !",
-  email: 'customer1@gmail.com',
-  password: 'customer01@',
-  avatar_url: "https://kitt.lewagon.com/placeholder/users/random",
-  is_seller: false
-)
-puts "SEED: START POPULATE OFFERS"
-3.times do
-  Offer.create!(
-    title: Faker::Company.name,
-    description: Faker::Lorem.sentences.join(" "),
-    price: Faker::Number.number(digits: 3),
-    date: Faker::Date.forward(days: 90),
-    user: titouan,
-    target: Faker::Sports::Football.player,
-    photo_url: Faker::LoremPixel.image
-  )
-end
-12.times do
-  offer = Offer.new(
-    title: Faker::Company.name,
-    description: Faker::Lorem.sentences.join(" "),
-    price: Faker::Number.number(digits: 3),
-    date: Faker::Date.forward(days: 90),
-    user: [seller1, seller2].sample,
-    target: Faker::Sports::Football.player,
-    photo_url: Faker::LoremPixel.image
-  )
-  offer.save!
-end
-puts "SEED: START POPULATE BOOKINGS"
-booking = Booking.create(
-  status: 1,
-  user: titouan,
-  offer: Offer.create(
-    title: Faker::Company.name,
-    description: Faker::Lorem.sentences.join(" "),
-    price: Faker::Number.number(digits: 3),
-    date: Faker::Date.forward(days: 90),
-    user: [seller1, seller2].sample,
-    target: Faker::Sports::Football.player,
-    photo_url: Faker::LoremPixel.image
-  )
-)
-booking = Booking.create(
-  status: 0,
-  user: titouan,
-  offer: Offer.create(
-    title: Faker::Company.name,
-    description: Faker::Lorem.sentences.join(" "),
-    price: Faker::Number.number(digits: 3),
-    date: Faker::Date.forward(days: 90),
-    user: [seller1, seller2].sample,
-    target: Faker::Sports::Football.player,
-    photo_url: Faker::LoremPixel.image
-  )
-)
-# Une offre n'apparraitra pas deux fois
-Offer.first(12).shuffle.each do |offer|
-  booking = Booking.new(
-    status: [0, 1, 1, 1].sample,
-    user: User.all.sample,
-    offer: offer
-  )
-  if booking.save!
-    unless booking.status
-      Booking.new(
-        status: 1,
-        user: users.sample,
-        offer: offer
-      )
-    end
-  end
-end
-puts "SEED: END POPULATE"
 
-# secret seed (false => true pour activer)
-return unless ENV["secret"] || true
-# Les cloudinary posent pb
+
 wagonners = [
   ["violaine", "https://avatars1.githubusercontent.com/u/70322815?v=4"],
   ["anne-cecile", "https://avatars3.githubusercontent.com/u/34253262?v=4"],
@@ -192,29 +76,29 @@ descriptions = [
   "VOTEZ POUR MOI"
 ]
 pranks = [
-  ["Epiler la victime au Chartertone", "Une souffrance jamais égalée"],
-  ["Mettre une punaise sur la chaise", "Une attaque directe à la fierté de l'adversaire"],
-  ["Meurtre à base de légumineux de saison", "No Comment"],
-  ["Pousser dans les escaliers", "No Comment"],
-  ["Emietter trois Granolas dans le lit de la victime", "Nombreux sont ceux qui ne s'en sont jamais remis"],
-  ["Assommer avec un curcurbitacé", "Tuer en s'amusant"],
-  ["Déposer une couche sale dans la chambre de la victime endormie", "Trés peu pour moi"],
-  ["La fameuse crotte de chien dans un sac enflammé", "Ne marche pas dans le Sud. Il n'ont pas de chaussures"],
-  ["Ligoter et forcer à manger 127 nuggets Mc Do", "En l'écrivant j'ai vomi dans ma bouche"],
-  ["Uriner dans les chaussures de la victime", "Simple, mais toujours efficace. Et salutaire"],
-  ["Giffler", "Un classique. Rechauffe les mains en hiver"],
-  ["Parler longtemps de trés près après une pizza de chez Marco", "Le fameux oncle Marco..."],
-  ["Coup de boule", "Bim !"],
-  ["Refiler des morpions", "Encore faut-il en avoir"],
-  ["Assassinat en découpant la carotide avec une feuille de chêne", "Le tarif dépend de la saison"],
-  ["Biffler", "No Comment"],
-  ["Une decapitation standard", "No Comment"],
-  ["Cracher dans le café de la victime", "Après une pizza de chez Marco"],
-  ["Jeter des orties et partir en courant", "Le prix reflète l'effort fourni"],
-  ["Poser un piège à loups, sur la tête de la victime", "Penser à porter une blouse"],
-  ["Mettre de la superglue sur la cuvette des toilettes", "Pire chez les victimes velues"],
-  ["Jeter un pot de peinture indélébile sur la victime", "Ne pas hésiter à demander le suppléments Plumes et Graviers"],
-  ["Poil à gratter", "Favoriser le poil de loutre. Ou de phoque"]
+  ["Epiler la victime au Chartertone", "Une souffrance jamais égalée", "https://images.pexels.com/photos/4506273/pexels-photo-4506273.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
+  ["Mettre une punaise sur la chaise", "Une attaque directe à la fierté de l'adversaire", "https://images.pexels.com/photos/348391/pexels-photo-348391.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"],
+  ["Meurtre à base de légumineux de saison", "No Comment", "https://images.pexels.com/photos/5915429/pexels-photo-5915429.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"],
+  ["Pousser dans les escaliers", "La meilleur chute à votre histoire", "https://images.pexels.com/photos/929282/pexels-photo-929282.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
+  ["Emietter trois Granolas dans le lit de la victime", "Nombreux sont ceux qui ne s'en sont jamais remis", "https://www.aromabio.fr/media/ressources/csm/guide-acne-dos.PNG"],
+  ["Assommer avec un curcurbitacé", "Tuer en s'amusant", "https://images.pexels.com/photos/619418/pexels-photo-619418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
+  ["Déposer une couche sale dans la chambre de la victime endormie", "Trés peu pour moi", "https://thumbs.dreamstime.com/t/plan-rapproch%C3%A9-de-la-couche-culotte-stinky-sale-jaune-du-b%C3%A9b%C3%A9-nouveau-n%C3%A9-se-trouvant-dessus-118500597.jpg"],
+  ["La fameuse crotte de chien dans un sac enflammé", "Ne marche pas dans le Sud. Il n'ont pas de chaussures", "https://www.santevet.com/upload/admin/images/article/chien2_2/logo_chien/djection_canine.png"],
+  ["Ligoter et forcer à manger 127 nuggets Mc Do", "En l'écrivant j'ai vomi dans ma bouche", "https://geo.img.pmdstatic.net/fit/https.3A.2F.2Fprd-neon-website-statics.2Es3.2Eeu-west-1.2Eamazonaws.2Ecom.2Fcontent.2Fuploads.2F2014.2F09.2FPas-de-souci-Rhys-Owens-arrive-nettoyer-.25C3.25A7a-331120.2Ejpg/1162x554/quality/80/background-color/ffffff/background-alpha/100/pas-de-souci-rhys-owens-arrive-nettoyer-ca-331120.jpg"],
+  ["Uriner dans les chaussures de la victime", "Simple, mais toujours efficace. Et salutaire", "https://cdn.futura-sciences.com/buildsv6/images/wide1920/e/8/0/e800e491e6_128148_uriner-eclabousser.jpg"],
+  ["Giffler", "Un classique. Rechauffe les mains en hiver", "https://i.skyrock.net/3577/14423577/pics/651640579_small.jpg"],
+  ["Parler longtemps de trés près après une pizza de chez Marco", "Le fameux oncle Marco...", "https://tonpetitlook.com/wp-content/uploads/2017/04/je-pue-de-la-gueule-425708.png"],
+  ["Coup de boule", "Bim !", "https://p7.storage.canalblog.com/70/99/1225543/118463194.jpg"],
+  ["Refiler des morpions", "Encore faut-il en avoir", "https://upload.wikimedia.org/wikipedia/commons/2/27/Pthirus_pubis_-_crab_louse.jpg"],
+  ["Assassinat en découpant la carotide avec une feuille de chêne", "Le tarif dépend de la saison", "https://www.stephanebouillet.com/sites/stephanebouillet.com/files/images/2017/w-musaranas-nb-by-remedact_0.jpg"],
+  ["Biffler", "No Comment", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbRhts-CV3ygxzE2AzSSG5vyKqYbTUsSFXjg&usqp=CAU"],
+  ["La B.... au cirage", "On a rien fait de mieux depuis Lara Fabian", "https://4.bp.blogspot.com/-P-sHL8swDO4/U3izSOLu89I/AAAAAAAADRA/IO1iysnFIG0/w1200-h630-p-k-no-nu/Cirage+noir+Le+Marginal+Magnifique+se+frotter+la+bite+au+cirage.jpg"],
+  ["Cracher dans le café de la victime", "Après une pizza de chez Marco", "https://www.jooks.fr/wp-content/uploads/2016/09/Unknown.jpeg"],
+  ["Diffuser Lara Fabian dans des enceintes cacher chez la victime", "Le prix reflète l'effort fourni", "https://www.sortiraparis.com/images/1001/77381/476984-lara-fabian-a-l-olympia-en-2020-3.jpg"],
+  ["Poser un piège à loups, sur la tête de la victime", "Penser à porter une blouse", "https://images.pexels.com/photos/4046869/pexels-photo-4046869.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
+  ["Mettre de la superglue sur la cuvette des toilettes", "Pire chez les victimes velues", "https://images.pexels.com/photos/3944410/pexels-photo-3944410.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
+  ["Jeter un pot de peinture indélébile sur la victime", "Ne pas hésiter à demander le suppléments Plumes et Graviers", "https://d2xlsvqc2km4uk.cloudfront.net/live/desktop/images/destinations/brighton/activities/naked-body-painting-header.jpg"],
+  ["Poil à gratter", "Favoriser le poil de loutre. Ou de phoque", "https://static.cnews.fr/sites/default/files/000_j56yw_5d7a4d6339d2c.jpg"]
 ]
 
 puts "SECRET SEED: START CLEAR"
@@ -274,7 +158,7 @@ end
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
     user: bad_boy,
     target: "#{target.first_name} #{target.last_name}",
-    photo_url: Faker::LoremPixel.image(size: "50x50", is_gray: true)
+    photo_url: prank[2]
   )
 end
 puts "SECRET SEED: START POPULATE BOOKINGS"
