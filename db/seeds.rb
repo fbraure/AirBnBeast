@@ -1,5 +1,17 @@
 require 'faker'
 
+def seed_photo_from_claudinary(id)
+  resource_type = "image"
+  type = "upload"
+  version = 1234567890
+  format = "jpg"
+  signature = Cloudinary::Utils.api_sign_request(
+    {
+      :public_id=>id,
+      :version=>version
+    }, Cloudinary.config.api_secret)
+  photo = "#{resource_type}/#{type}/v#{version}/#{id}.#{format}##{signature}"
+end
 
 wagonners = [
   ["violaine", "https://avatars1.githubusercontent.com/u/70322815?v=4"],
@@ -137,6 +149,8 @@ users = User.all
 7.times do
   prank = pranks.sample
   target = users.reject{|user| user == titouan }.sample
+  toto = seed_photo_from_claudinary(prank[2]);
+  pp toto
   Offer.create!(
     title: prank[0],
     description: prank[1],
@@ -144,7 +158,7 @@ users = User.all
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
     user: titouan,
     target: "#{target.first_name} #{target.last_name}",
-    photo_url: prank[2]
+    photo_url: seed_photo_from_claudinary(prank[2])
   )
 end
 24.times do

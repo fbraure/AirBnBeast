@@ -2,6 +2,7 @@ class Offer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :bookings, dependent: :destroy
   belongs_to :user
+  has_one_attached :photo_url
 
   include PgSearch::Model
   # Following Gem Setup

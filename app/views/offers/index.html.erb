@@ -12,7 +12,7 @@
   <div class= "cards">
     <% @offers.each do |offer| %>
       <%= link_to offer_path(offer), class:"card-trip" do%>
-          <%=cl_image_tag(offer.photo_url, class:"img-fluid")%>
+          <%=cl_image_tag(offer.photo_url.key, class:"img-fluid")%>
           <div class="card-trip-infos">
             <div>
               <h3><%=offer.title%></h3>
