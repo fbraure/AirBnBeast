@@ -7,7 +7,7 @@
 }
 
 .tabs-underlined .tab-underlined {
-  color: black;
+  color: white;
   padding: 8px;
   margin: 8px 16px;
   opacity: .4;
@@ -18,5 +18,5 @@
 
 .tabs-underlined .tab-underlined.active {
   opacity: 1;
-  border-bottom: 3px solid #555555;
+  border-bottom: 3px solid white;
 }
