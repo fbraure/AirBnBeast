@@ -1,74 +1,109 @@
 $drop-size:10px;
 $flaque-size:50px;
+$fall1: calc(100vh - 75px);
+$fall2: calc(100vh - 60px);
 
 .drop{
   position: absolute;
-  top: 86px;
+  top: 45px;
   left: 20px;
+  z-index: 1400;
   width: $drop-size;
   height: $drop-size;
   border-radius: 1em;
   border-top-right-radius: 0.2em;
   background: linear-gradient(to right, $blood1, $blood2);
-  animation: drops 2.5s linear infinite
+  animation: drop1 2.5s linear infinite
 }
 .drop:nth-child(2){
+  top: 30px;
   left: 40px;
-  top: 66px;
+  animation: drop2 2.5s linear infinite
 }
-
-  @keyframes drops{
-    0% {
-      opacity: 0.8;
-      transform: translateY(0vh)  rotate(-40deg);
-    }
-    90% {
-      opacity: 0.8;
-      transform: translateY(90vh) rotate(-40deg);
-    }
-    100% {
-      opacity: 0.8;
-      transform: translateY(90vh) rotate(-40deg);
-    }
+@keyframes drop1{
+  0% {
+    opacity: 0.8;
+    transform: translateY(0vh)  rotate(-40deg);
   }
-  .flaque{
-    width: 70px;
-    height: 20px;
-    margin-bottom: 3px;
-
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1031;
-
-    background: linear-gradient(to right, $blood1, $blood2);
-    border-radius: 50%;
-    animation: flaque 2.5s linear infinite;
+  20% {
+    opacity: 0.8;
+    transform: translateY(1vh)  rotate(-40deg);
   }
-  @keyframes flaque{
-    0% {
-      transform: scale(1);
-    }
-    85% {
-      transform: scale(1);
-    }
-    86% {
-      transform: scale(1.2);
-    }
-    87% {
-      transform: scale(1);
-    }
-    89% {
-      transform: scale(1);
-    }
-    90% {
-      transform: scale(1.2);
-    }
-    91% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1);
-    }
+  60% {
+    opacity: 0.8;
+    transform: translateY($fall1) rotate(-40deg);
   }
+  61%{
+    opacity: 0;
+    transform: translateY($fall1) rotate(-40deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY($fall1) rotate(-40deg);
+  }
+}
+@keyframes drop2{
+  0% {
+    opacity: 0;
+    transform: translateY(0vh)  rotate(-40deg);
+  }
+  30% {
+    opacity: 0.8;
+    transform: translateY(0vh)  rotate(-40deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(1vh)  rotate(-40deg);
+  }
+  90% {
+    opacity: 0.8;
+    transform: translateY($fall2) rotate(-40deg);
+  }
+  91% {
+    opacity: 0;
+    transform: translateY($fall2) rotate(-40deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY($fall2) rotate(-40deg);
+  }
+}
+.flaque{
+  width: 70px;
+  height: 20px;
+  margin-bottom: 3px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background: linear-gradient(to right, $blood1, $blood2);
+  border-radius: 50%;
+  animation: flaque 2.5s linear infinite;
+}
+@keyframes flaque{
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1);
+  }
+  61% {
+    transform: scale(1.2);
+  }
+  62% {
+    transform: scale(1);
+  }
+  89% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1.2);
+  }
+  91% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
