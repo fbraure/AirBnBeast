@@ -15,12 +15,17 @@ $gradient-top-left: linear-gradient(225deg, #dc851fff, #f0eff4ff, #bd1e1eff, #39
 $gradient-bottom-left: linear-gradient(315deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
 $gradient-radial: radial-gradient(#dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
  -->
-
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1557148353-009729a39979?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');">
+<!-- <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1557148353-009729a39979?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');"> -->
+<div class="banner" style="background: #191716ff">
   <div class="container">
     <h1>AirBnBeast</h1>
-    <div class="typewriter"><h2>Decouvrez nos meilleurs Beast</h2></div>
+    <div class="typewriter"><h2>Decouvrez nos meilleurs Beasts</h2></div>
     <p><span id="banner-typed-text"></span></p>
+    <div class="blurtarget d-flex justify-content-center">
+    <%= link_to offers_path do %>
+      <%= image_tag('https://images.glaciermedia.ca/polopoly_fs/1.1746678.1422559530!/fileImage/httpImage/image.png_gen/derivatives/landscape_804/target.png', height: '250') %>
+    <% end %>
+    </div>
     <div class="container">
       <% unless user_signed_in? %>
         <div id="sign-buttons">
