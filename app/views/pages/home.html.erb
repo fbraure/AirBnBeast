@@ -29,8 +29,8 @@ $gradient-radial: radial-gradient(#dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #1
     <div class="container">
       <% unless user_signed_in? %>
         <div id="sign-buttons">
-          <%= link_to "SignIn", new_user_session_path, class: "btn btn-primary"%>
-          <%= link_to "SignUp", new_user_registration_path, class: "btn btn-primary"%>
+          <%= link_to "SignIn", new_user_session_path, class: "btn btn-danger"%>
+          <%= link_to "SignUp", new_user_registration_path, class: "btn btn-danger"%>
         </div>
       <% end %>
     </div>
