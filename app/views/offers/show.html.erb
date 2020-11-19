@@ -14,9 +14,11 @@
       <p><%= @offer.description %></p>
       <p><%= @offer.date %></p>
     </div>
+    <div>
+      <input type="text" name="Target" id="Target" placeholder="Who's your target?">
+    </div>
     <div class="zone-book">
       <h3><%= @offer.price %>€</h3>
-      <%= console %>
       <div>
         <button id="sweet-alert-demo" class="btn btn-danger btn-book">Book me!</button>
         <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, id: "book-link", class: "d-none" %>
