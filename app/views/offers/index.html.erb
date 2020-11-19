@@ -8,6 +8,13 @@
           </button>
       </div>
     <% end %>
+    <% if @offers.count > 1 %>
+      <p><%= @offers.count %> résultats trouvés</p>
+    <% elsif @offers.count == 1 %>
+      <p><%= @offers.count %> résultat trouvé</p>
+    <% else %>
+      <p>Nous n'avons pas trouvé de résultats pour votre recherche</p>
+    <% end %>
   </div>
   <div class= "cards">
     <% @offers.each do |offer| %>
