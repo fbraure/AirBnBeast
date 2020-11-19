@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     collection do
       get "/mine", to: "offers#mine"
     end
+    member do
+      patch "/unbook", to: "offers#unbook"
+    end
     resources :reviews, only: [ :new, :create ]
     resources :bookings, only: :create
   end

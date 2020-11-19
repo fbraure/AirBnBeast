@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   def create
+    byebug
     @booking = Booking.new
     @offer = Offer.find(params[:offer_id])
     @booking.offer = @offer
