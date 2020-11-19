@@ -60,7 +60,7 @@ descriptions = [
   "Peu le savent, mais un tatouage représentant un pénis dansant le flamenco est caché sur mon pied",
   "J'ai horreur de tous les fruits et légumes bicolores. Même en automne",
   "Rien de particulier à dire. J'ai faim...",
-  "Outre mon air de Sean Connery, appréhende le vice et la perversité comme personne",
+  "Outre mon air de Sean Connery, j'appréhende le vice et la perversité comme personne",
   "Mon apparence me fait défaut, mais ma cruauté compense !",
   "Mes passions dans la vie : Jouer à la roue de la fortune les yeux bandés et faire des ballades en poney, les jours de pluie",
   "Je mérite à être connue. Sauf par la police...",
@@ -72,7 +72,7 @@ descriptions = [
   "J'ai déjà craché dans une tasse du Wagon avant de la reposer :)",
   "Pas de scrupule à faire souffrire les gens. La vie est une chienne",
   "On peut pas décrire mille fois mille personnes, mais... non... ",
-  "On m'appele aussi Elwis Presse Les. Je sais pas pourquoi.",
+  "On m'appele aussi Elwis Presse Les. Je ne sais pas pourquoi.",
   "VOTEZ POUR MOI"
 ]
 pranks = [
@@ -94,7 +94,7 @@ pranks = [
   ["Biffler", "No Comment", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbRhts-CV3ygxzE2AzSSG5vyKqYbTUsSFXjg&usqp=CAU"],
   ["La B.... au cirage", "On a rien fait de mieux depuis Lara Fabian", "https://4.bp.blogspot.com/-P-sHL8swDO4/U3izSOLu89I/AAAAAAAADRA/IO1iysnFIG0/w1200-h630-p-k-no-nu/Cirage+noir+Le+Marginal+Magnifique+se+frotter+la+bite+au+cirage.jpg"],
   ["Cracher dans le café de la victime", "Après une pizza de chez Marco", "https://www.jooks.fr/wp-content/uploads/2016/09/Unknown.jpeg"],
-  ["Diffuser Lara Fabian dans des enceintes cacher chez la victime", "Le prix reflète l'effort fourni", "https://www.sortiraparis.com/images/1001/77381/476984-lara-fabian-a-l-olympia-en-2020-3.jpg"],
+  ["Diffuser Lara Fabian dans des enceintes cachées chez la victime", "Le prix reflète l'effort fourni", "https://www.sortiraparis.com/images/1001/77381/476984-lara-fabian-a-l-olympia-en-2020-3.jpg"],
   ["Poser un piège à loups, sur la tête de la victime", "Penser à porter une blouse", "https://images.pexels.com/photos/4046869/pexels-photo-4046869.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
   ["Mettre de la superglue sur la cuvette des toilettes", "Pire chez les victimes velues", "https://images.pexels.com/photos/3944410/pexels-photo-3944410.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"],
   ["Jeter un pot de peinture indélébile sur la victime", "Ne pas hésiter à demander le suppléments Plumes et Graviers", "https://d2xlsvqc2km4uk.cloudfront.net/live/desktop/images/destinations/brighton/activities/naked-body-painting-header.jpg"],

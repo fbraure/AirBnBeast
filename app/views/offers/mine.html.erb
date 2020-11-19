@@ -7,10 +7,12 @@
       <p><%= @user.description %>
     </div>
   </div>
-
   <ul class="list-inline tabs-underlined">
     <li>
       <%= link_to "Mes Services Achetés", mine_offers_path(params: {service: "bought"}), class: "tab-underlined #{"active" if @offer_type == "bought"}" %>
+    </li>
+    <li>
+      <%= link_to "Mes Services Utilisés", mine_offers_path(params: {service: "used"}), class: "tab-underlined #{"active" if @offer_type == "used"}" %>
     </li>
     <li>
       <%= link_to "Mes Services Achetés Annulés", mine_offers_path(params: {service: "cancelled"}), class: "tab-underlined #{"active" if @offer_type == "cancelled"}" %>
@@ -20,7 +22,7 @@
     </li>
   </ul>
 
-  <% ["bought", "cancelled", "proposed"].each do |offer_type| %>
+  <% ["bought", "used", "cancelled", "proposed"].each do |offer_type| %>
     <div class="border rounded">
     <% if @offer_type == offer_type %>
       <% @offers.each do |offer| %>
@@ -46,6 +48,7 @@
           <% end %>
         </div>
       <% end %>
+
     <% end %>
     </div>
   <% end %>
