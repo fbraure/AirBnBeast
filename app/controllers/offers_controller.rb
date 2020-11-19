@@ -3,7 +3,7 @@ class OffersController < ApplicationController
 
   def index
     if params[:search] != nil && params[:search] != ""
-      @offers = Offer.search_by_title_and_decription(params[:search])
+      @offers = Offer.search_by_title_and_decription(params[:search]).reject(&:is_past?)
       # sql_query = " \
       #   offers.title @@ :search \
       #   OR offers.description @@ :search \
@@ -12,7 +12,7 @@ class OffersController < ApplicationController
       #a creuser ILIKE pour search
       #a voir la GEM PG Search en remplacement
     else
-      @offers = Offer.all.reverse
+      @offers = Offer.all.reject(&:is_past?).reverse
     end
   end
 
@@ -23,11 +23,18 @@ class OffersController < ApplicationController
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
     @user = current_user
-    @offers = @user.offers.reverse
-    # Trouver les offres que user a achete pour les afficher
-    @active_booked_offers = @user.active_booked_offers.reverse
-    @cancelled_booked_offers = @user.cancelled_booked_offers.reverse
-    # TODO : tri par date de modif
+
+    @offer_type = params[:service] || "bought"
+    case @offer_type
+    when "bought"
+      @offers = @user.active_booked_offers.reject(&:is_past?).sort{ |a, b| a.date <=> b.date }
+    when "used"
+      @offers = @user.active_booked_offers.select(&:is_past?).sort{ |a, b| a.date <=> b.date }
+    when "cancelled"
+      @offers = @user.cancelled_booked_offers.sort{ |a, b| a.date <=> b.date }
+    when "proposed"
+      @offers = @user.offers.reverse
+    end
   end
 
   def new

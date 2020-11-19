@@ -43,4 +43,31 @@ $flaque-size:50px;
 
     background: linear-gradient(to right, $blood1, $blood2);
     border-radius: 50%;
+    animation: flaque 2.5s linear infinite;
+  }
+  @keyframes flaque{
+    0% {
+      transform: scale(1);
+    }
+    85% {
+      transform: scale(1);
+    }
+    86% {
+      transform: scale(1.2);
+    }
+    87% {
+      transform: scale(1);
+    }
+    89% {
+      transform: scale(1);
+    }
+    90% {
+      transform: scale(1.2);
+    }
+    91% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }

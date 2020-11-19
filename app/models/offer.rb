@@ -16,4 +16,9 @@ class Offer < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :date, presence: true
   validates :photo_url, presence: true
+
+  def is_past?
+    self.date < Date.current
+  end
+
 end
