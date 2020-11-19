@@ -1,0 +1,50 @@
+.search-container {
+  width: 500px;
+  margin: 30px auto;
+}
+
+@media (max-width: 960px) {
+  /* For a screen < 960px, this CSS will be read */
+  .search-container {
+    width: 500px;
+  }
+}
+@media (max-width: 720px) {
+  /* For a screen < 720px, this CSS will be read */
+  .search-container {
+    width: 300px;
+  }
+}
+@media (max-width: 540px) {
+  /* For a screen < 540px, this CSS will be read */
+  .search-container {
+    width: 300px;
+  }
+}
+
+
+.search-form-control {
+  position: relative;
+}
+
+.search-form-control .btn {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: white;
+}
+
+.search-form-control .btn-flat {
+  color: red;
+}
+
+.search-form-control .form-control {
+  height: 2.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #E7E7E7;
+}
+
+.search-form-control .form-control:focus {
+  outline: none !important;
+}

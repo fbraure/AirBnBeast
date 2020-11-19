@@ -5,11 +5,11 @@
         <h2><%= @seller %></h2>
         <p><%= @offer.user.description %></p>
       </div>
-      <img src=<%= @offer.user.avatar_url %> class="avatar-bordered" />
+      <%=image_tag(@offer.user.avatar_url, class:"avatar-bordered")%>
     </div>
   </div>
   <div class="card-trip">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+   <%= image_tag("https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg")%>
     <div class="card-trip-infos">
       <div>
         <h3><%= @offer.title %></h3>

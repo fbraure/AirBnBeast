@@ -1,3 +1,8 @@
+.card-trip a {
+  text-decoration: none;
+  color: #0E0000;
+}
+
 .card-trip {
   overflow: hidden;
   background: white;
@@ -6,7 +11,7 @@
 }
 
 .card-trip > img {
-  height: 300px;
+  height: 200px;
   width: 100%;
   object-fit: cover;
 }
