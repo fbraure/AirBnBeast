@@ -20,7 +20,7 @@
     <% if @offer_type == offer_type %>
       <% @offers.each do |offer| %>
           <div class="card-product">
-            <%= cl_image_tag offer.photo_url%>
+            <%= cl_image_tag offer.photo_url.key%>
             <% if (@offer_type == "bought") || (@offer_type == "used")|| (@offer_type == "cancelled")%>
               <%= image_tag offer.user.avatar_url, class: "avatar"%>
             <% end %>
