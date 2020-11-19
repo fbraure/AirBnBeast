@@ -23,11 +23,18 @@ class OffersController < ApplicationController
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
     @user = current_user
-    @offers = @user.offers.reverse
-    # Trouver les offres que user a achete pour les afficher
-    @active_booked_offers = @user.active_booked_offers.reject(&:is_past?).sort{ |a, b| a.date <=> b.date }
-    @active_booked_offers_passed = @user.active_booked_offers.select(&:is_past?).sort{ |a, b| a.date <=> b.date }
-    @cancelled_booked_offers = @user.cancelled_booked_offers.sort{ |a, b| a.date <=> b.date }
+
+    @offer_type = params[:service] || "bought"
+    case @offer_type
+    when "bought"
+      @offers = @user.active_booked_offers.reject(&:is_past?).sort{ |a, b| a.date <=> b.date }
+    when "used"
+      @offers = @user.active_booked_offers.select(&:is_past?).sort{ |a, b| a.date <=> b.date }
+    when "cancelled"
+      @offers = @user.cancelled_booked_offers.sort{ |a, b| a.date <=> b.date }
+    when "proposed"
+      @offers = @user.offers.reverse
+    end
   end
 
   def new
