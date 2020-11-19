@@ -1,7 +1,7 @@
 <!--  Afficher les offres créé par current_user -->
 <div class="container">
   <div class="profil">
-    <img class="avatar-large" alt="avatar-large" src=<%= @user.avatar_url %> />
+    <%=image_tag(@user.avatar_url, class:"avatar-large")%>
     <div class="profil-content">
       <h2><%= @user.first_name %> <%= @user.last_name %></h2>
       <p><%= @user.description %>
@@ -10,30 +10,65 @@
     <h3>Mes Services Achetés</h3>
   <div class="border rounded">
     <% @booked_offers.each do |offer| %>
-      <div class="card-product">
-        <%= image_tag offer.photo_url%>
-        <div class="card-product-infos">
-          <h5><%= offer.title %></h5>
-          <p><%= offer.description %></p>
-          <p><%= offer.date %></p>
-          <h5><%= offer.price %>€</h5>
+      <div class="d-flex align-items-center">
+        <div class="card-product flex-grow-1">
+          <%= image_tag offer.photo_url%>
+          <div class="card-product-infos">
+            <h5><%= offer.title %></h5>
+            <p><%= offer.description %></p>
+            <p><%= offer.date %></p>
+            <h5><%= offer.price %>€</h5>
+          </div>
+          <%= image_tag offer.user.avatar_url, class: "avatar"%>
         </div>
-        <%= image_tag offer.user.avatar_url, class: "avatar"%>
+        <%= link_to unbook_offer_path(offer), method: :patch do%>
+          <%# <i class="fas fa-trash-alt  fa-4x p-2"></i> %>
+          <i class="far fa-window-close fa-4x p-2"></i>
+        <% end %>
       </div>
+    <% end %>
+  </div>
+  <br/>
+  <h3>Mes Services Achetés Annulés</h3>
+  <div class="border rounded">
+    <% unless @cancelled_booked_offers.nil? %>
+      <% @cancelled_booked_offers.each do |offer| %>
+        <div class="d-flex align-items-center">
+          <div class="card-product flex-grow-1">
+            <%= image_tag offer.photo_url%>
+            <div class="card-product-infos">
+              <h5><%= offer.title %></h5>
+              <p><%= offer.description %></p>
+              <p><%= offer.date %></p>
+              <h5><%= offer.price %>€</h5>
+            </div>
+            <%= image_tag offer.user.avatar_url, class: "avatar"%>
+          </div>
+          <%= link_to unbook_offer_path(offer), method: :patch  do%>
+            <%# <i class="fas fa-trash-alt  fa-4x p-2"></i> %>
+            <i class="far fa-window-close fa-4x p-2 disabled"></i>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <br/>
   <h3>Mes Services Proposés</h3>
   <div class="border rounded">
     <% @offers.each do |offer| %>
-      <div class="card-product">
-        <%= image_tag offer.photo_url%>
-        <div class="card-product-infos">
-          <h5><%= offer.title %></h5>
-          <p><%= offer.description %></p>
-          <p><%= offer.date %></p>
-          <h5><%= offer.price %>€</h5>
+      <div class="d-flex align-items-center">
+        <div class="card-product  flex-grow-1">
+          <%= image_tag offer.photo_url%>
+          <div class="card-product-infos">
+            <h5><%= offer.title %></h5>
+            <p><%= offer.description %></p>
+            <p><%= offer.date %></p>
+            <h5><%= offer.price %>€</h5>
+          </div>
         </div>
+        <%= link_to offer_path(offer), method: :delete do%>
+          <i class="fas fa-trash-alt  fa-4x p-2"></i>
+        <% end %>
       </div>
     <% end %>
   </div>

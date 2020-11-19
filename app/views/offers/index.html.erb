@@ -1,19 +1,31 @@
-<div class= "cards">
-  <% @offers.each do |offer| %>
-    <div class="card-trip">
-      <img class="img-fluid" src=<%=offer.photo_url%> alt="offer photo"/>
-      <div class="card-trip-infos">
-        <div>
-          <h3><%= link_to offer.title, offer_path(offer)%></h3>
-          <p><%=offer.description%></p>
-          <p><%=offer.date%></p>
-          <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
-        </div>
-          <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
-          <img src=<%=offer.user.avatar_url%> class="card-trip-user avatar-bordered" />
+<div class="container">
+  <div class="search-container">
+    <%= simple_form_for :search, url: offers_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+         <input class="form-control string required" type="search" placeholder="Search" name="search" id="search" />
+          <button name="button" type="submit" class="btn btn-flat">
+            <i class="fas fa-search"></i>
+          </button>
       </div>
-    </div>
-  <%end%>
+    <% end %>
+  </div>
+  <div class= "cards">
+    <% @offers.each do |offer| %>
+      <%= link_to offer_path(offer), class:"card-trip" do%>
+          <%=image_tag(offer.photo_url, class:"img-fluid")%>
+          <div class="card-trip-infos">
+            <div>
+              <h3><%=offer.title%></h3>
+              <p><%=offer.description%></p>
+              <p><%=offer.date%></p>
+              <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
+            </div>
+            <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
+            <%=image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
+          </div>
+      <% end %>
+    <%end%>
+  </div>
 </div>
 
 

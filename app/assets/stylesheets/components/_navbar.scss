@@ -1,8 +1,13 @@
 .navbar-lewagon {
   justify-content: space-between;
+  align-items: center;
   background: white;
 }
 
+.navbar img{
+  width: 40px;
+  height: 40px;
+}
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
@@ -11,6 +16,13 @@
   width: 40px;
 }
 
+$oswald: 'Oswald', sans-serif;
+$teko: 'Teko', sans-serif;
+
+#nav-title {
+  margin-top: 0.7rem;
+  font-family: $teko;
+}
 
 .fa-user-circle {
   color: grey;
