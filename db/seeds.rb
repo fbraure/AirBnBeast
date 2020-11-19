@@ -139,7 +139,7 @@ wagonners.shuffle.first(18).each do |wagonner|
 end
 puts "SECRET SEED: START POPULATE OFFERS"
 users = User.all
-7.times do
+8.times do
   prank = pranks.sample
   target = users.reject{|user| user == titouan }.sample
   offer = Offer.new(
@@ -153,7 +153,7 @@ users = User.all
   offer.photo_url.attach(io: get_as_file(prank[2]), filename: offer.user.first_name, content_type: 'image/jpg')
   offer.save!
 end
-24.times do
+48.times do
   prank = pranks.sample
   bad_boy = users.reject{|user| user == titouan }.sample
   target = users.reject{|user| user == bad_boy || user == titouan}.sample
