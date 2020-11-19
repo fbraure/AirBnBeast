@@ -6,9 +6,17 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :offers
-  has_many :bookings, -> { where(status: 1) }
-  has_many :booked_offers, through: :bookings, source: :offer
-  # has_many :cancelled_bookings, -> { where(status: 0) }, class_name: "booking"
-  # has_many :cancelled_booked_offers, through: :cancelled_bookings, source: :offer
+  has_many(
+    :active_bookings,
+    -> { where('status= 1') },
+    class_name: "Booking"
+  )
+  has_many :active_booked_offers, through: :active_bookings, source: :offer
+  has_many(
+    :cancelled_bookings,
+    -> { where('status= 0') },
+    class_name: "Booking"
+  )
+  has_many :cancelled_booked_offers, through: :cancelled_bookings, source: :offer
   validates :avatar_url, presence: true
 end

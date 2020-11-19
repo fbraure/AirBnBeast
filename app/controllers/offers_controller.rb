@@ -20,8 +20,8 @@ class OffersController < ApplicationController
     @user = current_user
     @offers = @user.offers.reverse
     # Trouver les offres que user a achete pour les afficher
-    @booked_offers = @user.booked_offers.reverse
-    # @cancelled_booked_offers = @user.cancelled_booked_offers.reverse
+    @active_booked_offers = @user.active_booked_offers.reverse
+    @cancelled_booked_offers = @user.cancelled_booked_offers.reverse
     # TODO : tri par date de modif
   end
 
@@ -50,8 +50,10 @@ class OffersController < ApplicationController
   def unbook
     # Pour unbooker, il suffit de sortir les status = 1
     @bookings = @offer.bookings
-    byebug
-    @bookings.each{|booking| booking.status = 0}
+    @bookings.each do |booking|
+       booking.status = 0
+       booking.save
+    end
     # render :mine
     redirect_to mine_offers_path
   end
