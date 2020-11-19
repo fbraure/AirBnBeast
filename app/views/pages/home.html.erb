@@ -1,10 +1,26 @@
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/5591499/pexels-photo-5591499.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);">
+<!-- $fulvous: #dc851fff;
+$ghost-white: #f0eff4ff;
+$carnelian: #bd1e1eff;
+$onyx: #393d3fff;
+$eerie-black: #191716ff; -->
+<!-- /* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-right: linear-gradient(90deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-bottom: linear-gradient(180deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-left: linear-gradient(270deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-top-right: linear-gradient(45deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-bottom-right: linear-gradient(135deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-top-left: linear-gradient(225deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-bottom-left: linear-gradient(315deg, #dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+$gradient-radial: radial-gradient(#dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #191716ff);
+ -->
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1557148353-009729a39979?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');">
   <div class="container">
     <h1>AirBnBeast</h1>
     <div class="typewriter"><h2>Decouvrez nos meilleurs Beast</h2></div>
     <p><span id="banner-typed-text"></span></p>
-
     <div class="container">
       <% unless user_signed_in? %>
         <div id="sign-buttons">
@@ -15,3 +31,4 @@
     </div>
   </div>
 </div>
+
