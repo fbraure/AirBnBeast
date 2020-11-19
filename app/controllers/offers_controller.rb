@@ -3,7 +3,12 @@ class OffersController < ApplicationController
 
   def index
     if params[:search] != nil && params[:search] != ""
-      @offers = Offer.where("title ILIKE ?", "%#{params[:search]}%").reverse
+      @offers = Offer.search_by_title_and_decription(params[:search])
+      # sql_query = " \
+      #   offers.title @@ :search \
+      #   OR offers.description @@ :search \
+      #   "
+      # @offers = Offer.where(sql_query, search: '%#{params[:search]}%').reverse
       #a creuser ILIKE pour search
       #a voir la GEM PG Search en remplacement
     else

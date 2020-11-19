@@ -19,6 +19,19 @@
         <h3 id="nav-title">AirBnBeast</h3>
       <%end%>
       <div class="right d-flex">
+
+        <%= form_tag(offers_path, method: "get", class: "form-inline my-2 my-lg-0") do%>
+          <input class="form-control mr-sm-2"
+          type="search" placeholder="Search"
+          aria-label="Search" name="search"
+          id="search">
+          <%= submit_tag 'Search', class: "btn btn-outline-primary my-2 my-sm-0" %>
+        <% end %>
+
+        <%#= link_to_if(user_signed_in?, "Log Out", destroy_user_session_path, class:"btn btn-outline-danger my-2 my-sm-0 ml-1", method:"delete") do %>
+          <%#= link_to "Log Out", nil, class:"btn btn-outline-danger my-2 my-sm-0 ml-1 disabled" %>
+        <%# end %>
+
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <% if user_signed_in? %>
