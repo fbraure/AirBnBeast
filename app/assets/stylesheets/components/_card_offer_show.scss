@@ -1,0 +1,57 @@
+.offer_profil {
+  display: flex;
+  align-items: center;
+  margin: 30px 0 30px 0;
+}
+
+.offer_profil .profil-content {
+  flex-grow: 1;
+  padding: 0 24px;
+  p {
+    margin-bottom: 0px;
+    font-size: 14px;
+  }
+  h2 {
+    margin-bottom: 0px;
+    font-size: 22px;
+  }
+}
+
+.card-offer-show {
+  overflow: hidden;
+  height: 240px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-offer-show img {
+  height: 100%;
+  width: 240px;
+  object-fit: cover;
+}
+
+.card-offer-show h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-offer-show p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-offer-show .card-offer-show-infos {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.card-product-show .avatar{
+  width: 100px;
+  height: 100px;
+}

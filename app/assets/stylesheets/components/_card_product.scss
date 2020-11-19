@@ -1,14 +1,15 @@
 .card-product {
   overflow: hidden;
-  height: 240px;
+  height: 120px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
+  align-items: center;
 }
 
 .card-product img {
   height: 100%;
-  width: 320px;
+  width: 120px;
   object-fit: cover;
 }
 
@@ -31,3 +32,7 @@
   flex-grow: 1;
 }
 
+.card-product .avatar{
+  width: 100px;
+  height: 100px;
+}

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="profil">
+  <div class="offer_profil">
     <%=image_tag(@offer.user.avatar_url, class:"avatar-bordered")%>
     <div class="profil-content">
       <h2><%= @seller %></h2>
@@ -8,12 +8,13 @@
     </div>
   </div>
 
-  <div class="card-product">
+  <div class="card-offer-show">
     <%= image_tag(@offer.photo_url)%>
-    <div class="card-product-infos">
+    <div class="card-offer-show-infos">
       <h2><%= @offer.title %></h2>
       <p><%= @offer.description %></p>
       <p><%= @offer.date %></p>
+
       <div class="btn-book">
         <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, class: "btn btn-primary" %>
       </div>
