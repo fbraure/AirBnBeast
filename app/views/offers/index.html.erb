@@ -1,5 +1,15 @@
-=======
 <div class="container">
+  <div class="search-container">
+    <%= simple_form_for :search, url: offers_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+         <input class="form-control string required" type="search" placeholder="Search" name="search" id="search" />
+          <button name="button" type="submit" class="btn btn-flat">
+            <i class="fas fa-search"></i>
+          </button>
+      </div>
+    <% end %>
+  </div>
+
   <div class= "cards">
     <% @offers.each do |offer| %>
       <div class="card-trip">

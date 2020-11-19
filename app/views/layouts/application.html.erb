@@ -8,29 +8,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap');
+    </style>
+
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+    <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between">
       <%= link_to (user_signed_in? ? offers_path : root_path), class:"d-flex align-items-center navbar-brand m-0 p-0" do%>
         <%#= image_tag("logo.png", alt: "AirBnBeast logo")%>
-        <h2>AirBnBeast</h2>
+        <h3 id="nav-title">AirBnBeast</h3>
       <%end%>
       <div class="right d-flex">
         <%= form_tag(offers_path, method: "get", class: "form-inline my-2 my-lg-0") do%>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+          <input class="form-control mr-sm-2"
+          type="search" placeholder="Search"
+          aria-label="Search" name="search"
+          id="search">
           <%= submit_tag 'Search', class: "btn btn-outline-primary my-2 my-sm-0" %>
         <% end %>
-        <%= link_to_if(user_signed_in?, "Log Out", destroy_user_session_path, class: "btn btn-outline-danger my-2 my-sm-0 ml-1", method:"delete") do %>
-          <%= link_to "Log Out", nil, class: "btn btn-outline-danger my-2 my-sm-0 ml-1 disabled" %>
-        <% end %>
-        <%= link_to (user_signed_in? ? mine_offers_path : nil) do %>
-          <% if user_signed_in? %>
-            <%=image_tag(current_user.avatar_url, class:"avatar")%>
-          <% else %>
-            <i class="fas fa-user-circle fa-2x"></i>
-          <% end %>
-        <% end %>
+
+        <%#= link_to_if(user_signed_in?, "Log Out", destroy_user_session_path, class:"btn btn-outline-danger my-2 my-sm-0 ml-1", method:"delete") do %>
+          <%#= link_to "Log Out", nil, class:"btn btn-outline-danger my-2 my-sm-0 ml-1 disabled" %>
+        <%# end %>
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <%#= link_to (user_signed_in? ? mine_offers_path : nil) do %>
+                <% if user_signed_in? %>
+                  <%= image_tag current_user.avatar_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <%= link_to "Customer Zone", mine_offers_path, class: "dropdown-item" %>
+                    <%= link_to "Log Out", destroy_user_session_path, class: "dropdown-item", method:"delete" %>
+                  </div>
+                <% else %>
+                  <i class="fas fa-user-circle fa-2x"></i>
+                <% end %>
+              <%# end %>
+            </li>
+          </ul>
       </div>
     </nav>
     <%# <div class="drop"></div>

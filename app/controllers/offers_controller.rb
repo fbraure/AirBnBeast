@@ -3,7 +3,12 @@ class OffersController < ApplicationController
 
   def index
     if params[:search] != nil && params[:search] != ""
-      @offers = Offer.where("title ILIKE ?", "%#{params[:search]}%").reverse
+      @offers = Offer.search_by_title_and_decription(params[:search])
+      # sql_query = " \
+      #   offers.title @@ :search \
+      #   OR offers.description @@ :search \
+      #   "
+      # @offers = Offer.where(sql_query, search: '%#{params[:search]}%').reverse
       #a creuser ILIKE pour search
       #a voir la GEM PG Search en remplacement
     else
@@ -17,9 +22,24 @@ class OffersController < ApplicationController
 
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
-    @offers = Offer.where(user: current_user).reverse
     @user = current_user
+    @offers = @user.offers.reverse
     # Trouver les offres que user a achete pour les afficher
+    # @booked_offers = @user.booked_offers
+  end
+
+  def new
+    @offer = Offer.new
+  end
+
+  def create
+    @offer = Offer.new(offer_params)
+    @offer.user = current_user
+    if @offer.save!
+      redirect_to offer_path(@offer)
+    else
+      render 'new'
+    end
   end
 
   def edit
