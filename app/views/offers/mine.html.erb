@@ -28,7 +28,7 @@
       <% @offers.each do |offer| %>
         <div class="d-flex align-items-center">
           <div class="card-product flex-grow-1">
-            <%= image_tag offer.photo_url%>
+            <%= cl_image_tag offer.photo_url%>
             <div class="card-product-infos">
               <h5><%= offer.title %></h5>
               <p><%= offer.description %></p>

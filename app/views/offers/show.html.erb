@@ -7,9 +7,8 @@
       <p><%= @offer.user.description %></p>
     </div>
   </div>
-
   <div class="card-offer-show">
-    <%= image_tag(@offer.photo_url)%>
+    <%= cl_image_tag(@offer.photo_url)%>
     <div class="card-offer-show-infos">
       <h2><%= @offer.title %></h2>
       <p><%= @offer.description %></p>
