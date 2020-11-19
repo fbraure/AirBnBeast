@@ -1,16 +1,9 @@
 require 'faker'
+require 'open-uri'
 
-def seed_photo_from_claudinary(id)
-  resource_type = "image"
-  type = "upload"
-  version = 1234567890
-  format = "jpg"
-  signature = Cloudinary::Utils.api_sign_request(
-    {
-      :public_id=>id,
-      :version=>version
-    }, Cloudinary.config.api_secret)
-  photo = "#{resource_type}/#{type}/v#{version}/#{id}.#{format}##{signature}"
+def get_as_file( tof)
+  url = "https://res.cloudinary.com/magicflo/image/upload/v1605794465/#{tof}.jpg"
+  URI.open(url)
 end
 
 wagonners = [
@@ -104,7 +97,7 @@ pranks = [
   ["Refiler des morpions", "Encore faut-il en avoir", "LeWagon/AIRBNBEAST/_prank_13_hdst7y"],
   ["Assassinat en découpant la carotide avec une feuille de chêne", "Le tarif dépend de la saison", "LeWagon/AIRBNBEAST/_prank_14_u3dvmc"],
   ["Biffler", "No Comment", "LeWagon/AIRBNBEAST/_prank_15_eefmus"],
-  ["La B.... au cirage", "On a rien fait de mieux depuis Lara Fabian", "LeWagon/AIRBNBEAST/_prank_16_"],
+  ["La B.... au cirage", "On a rien fait de mieux depuis Lara Fabian", "LeWagon/AIRBNBEAST/_prank_16_ktbfgp"],
   ["Cracher dans le café de la victime", "Après une pizza de chez Marco", "LeWagon/AIRBNBEAST/_prank_17_dn8icx"],
   ["Diffuser Lara Fabian dans des enceintes cachées chez la victime", "Le prix reflète l'effort fourni", "LeWagon/AIRBNBEAST/_prank_18_xnot3l"],
   ["Poser un piège à loups, sur la tête de la victime", "Penser à porter une blouse", "LeWagon/AIRBNBEAST/_prank_19_yicw3o"],
@@ -149,31 +142,31 @@ users = User.all
 7.times do
   prank = pranks.sample
   target = users.reject{|user| user == titouan }.sample
-  toto = seed_photo_from_claudinary(prank[2]);
-  pp toto
-  Offer.create!(
+  offer = Offer.new(
     title: prank[0],
     description: prank[1],
     price: Faker::Number.number(digits: 3),
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
     user: titouan,
-    target: "#{target.first_name} #{target.last_name}",
-    photo_url: seed_photo_from_claudinary(prank[2])
+    target: "#{target.first_name} #{target.last_name}"
   )
+  offer.photo_url.attach(io: get_as_file(prank[2]), filename: offer.user.first_name, content_type: 'image/jpg')
+  offer.save!
 end
 24.times do
   prank = pranks.sample
   bad_boy = users.reject{|user| user == titouan }.sample
   target = users.reject{|user| user == bad_boy || user == titouan}.sample
-  Offer.create!(
+  offer = Offer.new(
     title: prank[0],
     description: prank[1],
     price: Faker::Number.number(digits: 3),
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
     user: bad_boy,
-    target: "#{target.first_name} #{target.last_name}",
-    photo_url: prank[2]
+    target: "#{target.first_name} #{target.last_name}"
   )
+  offer.photo_url.attach(io: get_as_file(prank[2]), filename: offer.user.first_name, content_type: 'image/jpg')
+  offer.save!
 end
 puts "SECRET SEED: START POPULATE BOOKINGS"
 Offer.all.shuffle.reject{|offer| offer.user == titouan || "#{titouan.first_name} #{titouan.last_name}" == offer.target}.first(5).each do |offer|
