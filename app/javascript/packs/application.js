@@ -33,9 +33,12 @@ button.addEventListener("click", (event) => {
   test.play();
 });
 
-// // Internal imports
-// import {addSoundsOnClick} from "../components/sounded_button.js";
+  // // Internal imports
+  // import {addSoundsOnClick} from "../components/sounded_button.js";
+import { superInitSweetAlert } from '../plugins/init_sweetalert';
+import { loadDynamicBannerText } from '../components/banner.js';
 
-// document.addEventListener('turbolinks:load', () => {
-//   addSoundsOnClick();
-// });
+document.addEventListener('turbolinks:load', () => {
+  superInitSweetAlert();
+  loadDynamicBannerText();
+});

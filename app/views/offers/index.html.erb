@@ -8,23 +8,30 @@
           </button>
       </div>
     <% end %>
+    <% if @offers.count > 1 %>
+      <p><%= @offers.count %> résultats trouvés</p>
+    <% elsif @offers.count == 1 %>
+      <p><%= @offers.count %> résultat trouvé</p>
+    <% else %>
+      <p>Nous n'avons pas trouvé de résultats pour votre recherche</p>
+    <% end %>
   </div>
-
   <div class= "cards">
     <% @offers.each do |offer| %>
-      <div class="card-trip">
-        <%=image_tag(offer.photo_url, class:"img-fluid")%>
-        <div class="card-trip-infos">
-          <div>
-            <h3><%= link_to offer.title, offer_path(offer)%></h3>
-            <p><%=offer.description%></p>
-            <p><%=offer.date%></p>
-            <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
+      <%= link_to offer_path(offer), class:"card-trip" do%>
+          <%=cl_image_tag(offer.photo_url.key, class:"img-fluid")%>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%=offer.title%></h2>
+              <p><%=offer.description%></p>
+              <p><%=offer.date%></p>
+              <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
+            </div>
+
+            <%= image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
           </div>
-            <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
-            <%=image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
-        </div>
-      </div>
+          <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
+      <% end %>
     <%end%>
   </div>
 </div>
