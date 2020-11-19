@@ -3,7 +3,7 @@ class OffersController < ApplicationController
 
   def index
     if params[:search] != nil && params[:search] != ""
-      @offers = Offer.search_by_title_and_decription(params[:search]).reject(&:is_past?)
+      @offers = Offer.search_by_title_and_decription(params[:search]).reject(&:is_past?).reject(&:is_booked?)
       # sql_query = " \
       #   offers.title @@ :search \
       #   OR offers.description @@ :search \
@@ -12,7 +12,7 @@ class OffersController < ApplicationController
       #a creuser ILIKE pour search
       #a voir la GEM PG Search en remplacement
     else
-      @offers = Offer.all.reject(&:is_past?).reverse
+      @offers = Offer.all.reject(&:is_past?).reject(&:is_booked?).reverse
     end
   end
 
