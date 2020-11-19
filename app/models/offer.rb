@@ -1,4 +1,4 @@
-class Offer < ApplicationRecord
+ class Offer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :bookings, dependent: :destroy
   belongs_to :user
@@ -21,4 +21,7 @@ class Offer < ApplicationRecord
     self.date < Date.current
   end
 
+  def is_booked?
+    self.bookings.any?{ |booking| booking.status == 1}
+  end
 end
