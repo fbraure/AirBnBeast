@@ -3,40 +3,76 @@
   <div class="profil">
     <%=image_tag(@user.avatar_url, class:"avatar-large")%>
     <div class="profil-content">
-      <h2><%=@user.first_name%> <%=@user.last_name%></h2>
-      <p><%=@user.description%></p> <!-- A enlever & Créer un champ description -->
+      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <p><%= @user.description %>
     </div>
   </div>
-  <div class="cards">
-    <% @offers.each do |offer| %>
-      <div class="card-trip">
-        <%=image_tag(offer.photo_url)%>
-        <div class="card-trip-infos">
-          <div>
-            <h3><%=offer.title%></h3>
-            <p><%=offer.description%></p>
-            <p><%=offer.date%></p>
+    <h3>Mes Services Achetés</h3>
+    <div class="border rounded">
+    <% unless @active_booked_offers.nil? %>
+      <% @active_booked_offers.each do |offer| %>
+        <div class="d-flex align-items-center">
+          <div class="card-product flex-grow-1">
+            <%= image_tag offer.photo_url%>
+            <div class="card-product-infos">
+              <h5><%= offer.title %></h5>
+              <p><%= offer.description %></p>
+              <p><%= offer.date %></p>
+              <h5><%= offer.price %>€</h5>
+            </div>
+            <%= image_tag offer.user.avatar_url, class: "avatar"%>
           </div>
-            <h3><%=offer.price%>€</h3>
+          <%= link_to unbook_offer_path(offer), method: :patch do%>
+            <%# <i class="fas fa-trash-alt  fa-4x p-2"></i> %>
+            <i class="far fa-window-close fa-4x p-2"></i>
+          <% end %>
         </div>
+      <% end %>
+  <% end %>
+    </div>
+  <br/>
+  <h3>Mes Services Achetés Annulés</h3>
+  <div class="border rounded">
+    <% unless @cancelled_booked_offers.nil? %>
+      <% @cancelled_booked_offers.each do |offer| %>
+        <div class="d-flex align-items-center">
+          <div class="card-product flex-grow-1">
+            <%= image_tag offer.photo_url%>
+            <div class="card-product-infos">
+              <h5><%= offer.title %></h5>
+              <p><%= offer.description %></p>
+              <p><%= offer.date %></p>
+              <h5><%= offer.price %>€</h5>
+            </div>
+            <%= image_tag offer.user.avatar_url, class: "avatar"%>
+          </div>
+          <%#= link_to unbook_offer_path(offer), method: :patch  do%>
+            <%# <i class="far fa-window-close fa-4x p-2 disabled d-hidden"></i> %>
+          <%# end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br/>
+  <h3>Mes Services Proposés</h3>
+  <div class="border rounded">
+    <% unless @offers.nil? %>
+    <% @offers.each do |offer| %>
+      <div class="d-flex align-items-center">
+        <div class="card-product  flex-grow-1">
+          <%= image_tag offer.photo_url%>
+          <div class="card-product-infos">
+            <h5><%= offer.title %></h5>
+            <p><%= offer.description %></p>
+            <p><%= offer.date %></p>
+            <h5><%= offer.price %>€</h5>
+          </div>
+        </div>
+        <%= link_to offer_path(offer), method: :delete do%>
+          <i class="fas fa-trash-alt  fa-4x p-2"></i>
+        <% end %>
       </div>
+    <% end %>
     <% end %>
   </div>
 </div>
-
-<!--  Afficher les offres achetés par current_user -->
-
-<!-- <h2>Booked Offers</h2>
-<%#= @bookedoffers.each do |offer| %>
-  <div class="card-trip">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg">
-        <div class="card-trip-infos">
-          <div>
-            <h3><%#= offer.title %></h3>
-            <p><%#= offer.description %></p>
-            <p><%#= offer.date %></p>
-          </div>
-            <h3><%#= offer.price %>€</h3>
-        </div>
-      </div>
-<%# end %> -->
