@@ -7,7 +7,7 @@
       <p><%= @user.description %>
     </div>
   </div>
-    <h3>Mes Services Achetés</h3>
+    <h3>Mes Services A venir</h3>
     <div class="border rounded">
     <% unless @active_booked_offers.nil? %>
       <% @active_booked_offers.each do |offer| %>
@@ -26,6 +26,29 @@
             <%# <i class="fas fa-trash-alt  fa-4x p-2"></i> %>
             <i class="far fa-window-close fa-4x p-2"></i>
           <% end %>
+        </div>
+      <% end %>
+  <% end %>
+    </div>
+  <br/>
+    <h3>Mes Services Passés</h3>
+    <div class="border rounded">
+    <% unless @active_booked_offers_passed.nil? %>
+      <% @active_booked_offers_passed.each do |offer| %>
+        <div class="d-flex align-items-center">
+          <div class="card-product flex-grow-1">
+            <%= image_tag offer.photo_url%>
+            <div class="card-product-infos">
+              <h5><%= offer.title %></h5>
+              <p><%= offer.description %></p>
+              <p><%= offer.date %></p>
+              <h5><%= offer.price %>€</h5>
+            </div>
+            <%= image_tag offer.user.avatar_url, class: "avatar"%>
+          </div>
+          <%#= link_to unbook_offer_path(offer), method: :patch do%>
+            <%# <i class="far fa-window-close fa-4x p-2"></i> %>
+          <%# end %>
         </div>
       <% end %>
   <% end %>
