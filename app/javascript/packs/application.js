@@ -25,9 +25,17 @@ require("channels")
 // External imports
 import "bootstrap";
 
-// Internal imports
-import {addSoundsOnClick} from "../components/sounded_button.js";
-
-document.addEventListener('turbolinks:load', () => {
-  addSoundsOnClick();
+const button = document.getElementById("nav-title");
+button.addEventListener("click", (event) => {
+  console.log("sound");
+  const test = document.querySelector(".audio-play");
+  debugger;
+  test.play();
 });
+
+// // Internal imports
+// import {addSoundsOnClick} from "../components/sounded_button.js";
+
+// document.addEventListener('turbolinks:load', () => {
+//   addSoundsOnClick();
+// });
