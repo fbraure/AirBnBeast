@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="card-trip">
-   <%= image_tag("https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg")%>
+    <%=cl_image_tag(@offer.photo_url)%>
     <div class="card-trip-infos">
       <div>
         <h3><%= @offer.title %></h3>
