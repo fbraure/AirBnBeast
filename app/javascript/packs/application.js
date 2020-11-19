@@ -34,8 +34,8 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initSweetalert('#sweet-alert-demo', {
-  title: "Your booking is confirm",
-  text: "Happy murder",
+  title: "Your Target is locked!",
+  text: "Beware the vengeance of your Target!",
   icon: "success"
   }, (value) => {
     if (value) {

@@ -8,6 +8,13 @@
           </button>
       </div>
     <% end %>
+    <% if @offers.count > 1 %>
+      <p><%= @offers.count %> résultats trouvés</p>
+    <% elsif @offers.count == 1 %>
+      <p><%= @offers.count %> résultat trouvé</p>
+    <% else %>
+      <p>Nous n'avons pas trouvé de résultats pour votre recherche</p>
+    <% end %>
   </div>
   <div class= "cards">
     <% @offers.each do |offer| %>
@@ -15,14 +22,15 @@
           <%=cl_image_tag(offer.photo_url, class:"img-fluid")%>
           <div class="card-trip-infos">
             <div>
-              <h3><%=offer.title%></h3>
+              <h2><%=offer.title%></h2>
               <p><%=offer.description%></p>
               <p><%=offer.date%></p>
               <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
             </div>
-            <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
+
             <%= image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
           </div>
+          <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
       <% end %>
     <%end%>
   </div>
