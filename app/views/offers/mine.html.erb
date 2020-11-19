@@ -1,12 +1,11 @@
 <!--  Afficher les offres créé par current_user -->
-<div class="container" style="background:#f0eff4ff">
-  <div class="profil">
+<div class="container">
     <%=image_tag(@user.avatar_url, class:"avatar-large")%>
     <div class="profil-content">
       <h2><%= @user.first_name %> <%= @user.last_name %></h2>
       <p><%= @user.description %>
     </div>
-  </div>
+  </div> -->
   <ul class="list-inline tabs-underlined">
     <li>
       <%= link_to "Mes Services Achetés", mine_offers_path(params: {service: "bought"}), class: "tab-underlined #{"active" if @offer_type == "bought"}" %>
@@ -15,7 +14,7 @@
       <%= link_to "Mes Services Utilisés", mine_offers_path(params: {service: "used"}), class: "tab-underlined #{"active" if @offer_type == "used"}" %>
     </li>
     <li>
-      <%= link_to "Mes Services Achetés Annulés", mine_offers_path(params: {service: "cancelled"}), class: "tab-underlined #{"active" if @offer_type == "cancelled"}" %>
+      <%= link_to "Mes Services Annulés", mine_offers_path(params: {service: "cancelled"}), class: "tab-underlined #{"active" if @offer_type == "cancelled"}" %>
     </li>
     <li>
       <%= link_to "Mes Services Proposés", mine_offers_path(params: {service: "proposed"}), class: "tab-underlined #{"active" if @offer_type == "proposed"}" %>
@@ -23,34 +22,41 @@
   </ul>
 
   <% ["bought", "used", "cancelled", "proposed"].each do |offer_type| %>
-    <div class="border rounded">
+
     <% if @offer_type == offer_type %>
       <% @offers.each do |offer| %>
-        <div class="d-flex align-items-center">
-          <div class="card-product flex-grow-1">
+          <div class="card-product">
             <%= cl_image_tag offer.photo_url%>
+            <% if (@offer_type == "bought") || (@offer_type == "used")|| (@offer_type == "cancelled")%>
+              <%= image_tag offer.user.avatar_url, class: "avatar"%>
+            <% end %>
             <div class="card-product-infos">
-              <h5><%= offer.title %></h5>
+              <h2><%= offer.title %></h2>
               <p><%= offer.description %></p>
               <p><%= offer.date %></p>
-              <h5><%= offer.price %>€</h5>
+              <div class="target">
+                <% unless @offer_type == "proposed" %>
+                  <p>Target:</p>
+                  <h4><%= offer.target %></h4>
+                <% end %>
+              </div>
+              <h3><%= offer.price %>€</h3>
             </div>
-            <%= image_tag offer.user.avatar_url, class: "avatar"%>
+            <% if  @offer_type == "bought" %>
+              <%= link_to unbook_offer_path(offer), method: :patch do%>
+              <i class="far fa-window-close fa-1x p-2"></i>
+              <% end %>
+            <% elsif  @offer_type == "proposed" %>
+              <%= link_to edit_offer_path(offer), method: :get do%>
+                <i class="far fa-edit fa-1x p-2"></i>
+              <% end %>
+              <%= link_to unbook_offer_path(offer), method: :delete do%>
+                <i class="fas fa-trash-alt  fa-1x p-2"></i>
+              <% end %>
+            <% end %>
           </div>
-          <% if  @offer_type == "bought" %>
-            <%= link_to unbook_offer_path(offer), method: :patch do%>
-            <i class="far fa-window-close fa-4x p-2"></i>
-            <% end %>
-          <% elsif  @offer_type == "proposed" %>
-            <%= link_to unbook_offer_path(offer), method: :delete do%>
-            <i class="fas fa-trash-alt  fa-4x p-2"></i>
-            <% end %>
-          <% end %>
-        </div>
       <% end %>
-
     <% end %>
-    </div>
   <% end %>
 
 
