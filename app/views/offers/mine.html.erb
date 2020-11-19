@@ -46,10 +46,9 @@
             </div>
             <%= image_tag offer.user.avatar_url, class: "avatar"%>
           </div>
-          <%= link_to unbook_offer_path(offer), method: :patch  do%>
-            <%# <i class="fas fa-trash-alt  fa-4x p-2"></i> %>
-            <i class="far fa-window-close fa-4x p-2 disabled"></i>
-          <% end %>
+          <%#= link_to unbook_offer_path(offer), method: :patch  do%>
+            <%# <i class="far fa-window-close fa-4x p-2 disabled d-hidden"></i> %>
+          <%# end %>
         </div>
       <% end %>
     <% end %>
