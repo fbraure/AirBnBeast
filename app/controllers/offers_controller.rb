@@ -72,7 +72,7 @@ class OffersController < ApplicationController
 
   def destroy
       @offer.destroy
-      redirect_to mine_offers_path
+      redirect_to mine_offers_path(service: params[:service])
   end
 
   private
