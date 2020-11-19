@@ -158,7 +158,7 @@ end
     date: Faker::Date.between(from: 30.days.ago, to: 30.days.from_now),
     user: bad_boy,
     target: "#{target.first_name} #{target.last_name}",
-    photo_url: prank[3]
+    photo_url: prank[2]
   )
 end
 puts "SECRET SEED: START POPULATE BOOKINGS"
