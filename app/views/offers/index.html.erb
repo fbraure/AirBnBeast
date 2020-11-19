@@ -21,7 +21,7 @@
               <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
             </div>
             <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
-            <%=image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
+            <%= image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
           </div>
       <% end %>
     <%end%>
