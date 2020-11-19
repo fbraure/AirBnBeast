@@ -17,7 +17,7 @@
         <p><%= @offer.date %></p>
       </div>
       <div class="btn-book">
-        <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, class: "btn btn-primary" %>
+        <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, class: "btn btn-primary btn-sounded" %>
       </div>
       <h2 class="card-trip-pricing"><%= @offer.price %>€</h2>
     </div>
