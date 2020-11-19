@@ -1,11 +1,5 @@
 <!--  Afficher les offres créé par current_user -->
 <div class="container">
-    <%=image_tag(@user.avatar_url, class:"avatar-large")%>
-    <div class="profil-content">
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      <p><%= @user.description %>
-    </div>
-  </div> -->
   <ul class="list-inline tabs-underlined">
     <li>
       <%= link_to "Mes Services Achetés", mine_offers_path(params: {service: "bought"}), class: "tab-underlined #{"active" if @offer_type == "bought"}" %>
@@ -58,5 +52,5 @@
       <% end %>
     <% end %>
   <% end %>
-
+</div>
 
