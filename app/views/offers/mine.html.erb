@@ -48,8 +48,11 @@
               <i class="far fa-window-close fa-1x p-2"></i>
               <% end %>
             <% elsif  @offer_type == "proposed" %>
+              <%= link_to edit_offer_path(offer), method: :get do%>
+                <i class="far fa-edit fa-1x p-2"></i>
+              <% end %>
               <%= link_to unbook_offer_path(offer), method: :delete do%>
-              <i class="fas fa-trash-alt  fa-1x p-2"></i>
+                <i class="fas fa-trash-alt  fa-1x p-2"></i>
               <% end %>
             <% end %>
           </div>
