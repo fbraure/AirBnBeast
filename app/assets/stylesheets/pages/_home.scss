@@ -11,7 +11,7 @@ body {
 
 /* DEMO-SPECIFIC STYLES */
 .typewriter h2 {
-  color: darkorange;
+  color: #bd1e1eff;
   font-family: monospace;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: .15em solid orange; /* The typwriter cursor */
@@ -32,5 +32,40 @@ body {
 /* The typewriter cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: orange }
+  50% { border-color: #bd1e1eff }
 }
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #EFEFEF;
+  position: relative;
+  font-size: 100%;
+}
+
+.blurtarget{
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+
+.blurtarget:hover {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+}
+
+
