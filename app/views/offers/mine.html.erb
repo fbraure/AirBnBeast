@@ -7,10 +7,23 @@
       <p><%= @user.description %>
     </div>
   </div>
-    <h3>Mes Services Achetés</h3>
+
+  <ul class="list-inline tabs-underlined">
+    <li>
+      <%= link_to "Mes Services Achetés", mine_offers_path(params: {service: "bought"}), class: "tab-underlined #{"active" if @offer_type == "bought"}" %>
+    </li>
+    <li>
+      <%= link_to "Mes Services Achetés Annulés", mine_offers_path(params: {service: "cancelled"}), class: "tab-underlined #{"active" if @offer_type == "cancelled"}" %>
+    </li>
+    <li>
+      <%= link_to "Mes Services Proposés", mine_offers_path(params: {service: "proposed"}), class: "tab-underlined #{"active" if @offer_type == "proposed"}" %>
+    </li>
+  </ul>
+
+  <% ["bought", "cancelled", "proposed"].each do |offer_type| %>
     <div class="border rounded">
-    <% unless @active_booked_offers.nil? %>
-      <% @active_booked_offers.each do |offer| %>
+    <% if @offer_type == offer_type %>
+      <% @offers.each do |offer| %>
         <div class="d-flex align-items-center">
           <div class="card-product flex-grow-1">
             <%= image_tag offer.photo_url%>
@@ -22,57 +35,19 @@
             </div>
             <%= image_tag offer.user.avatar_url, class: "avatar"%>
           </div>
-          <%= link_to unbook_offer_path(offer), method: :patch do%>
-            <%# <i class="fas fa-trash-alt  fa-4x p-2"></i> %>
+          <% if  @offer_type == "bought" %>
+            <%= link_to unbook_offer_path(offer), method: :patch do%>
             <i class="far fa-window-close fa-4x p-2"></i>
+            <% end %>
+          <% elsif  @offer_type == "proposed" %>
+            <%= link_to unbook_offer_path(offer), method: :delete do%>
+            <i class="fas fa-trash-alt  fa-4x p-2"></i>
+            <% end %>
           <% end %>
         </div>
       <% end %>
-  <% end %>
+    <% end %>
     </div>
-  <br/>
-  <h3>Mes Services Achetés Annulés</h3>
-  <div class="border rounded">
-    <% unless @cancelled_booked_offers.nil? %>
-      <% @cancelled_booked_offers.each do |offer| %>
-        <div class="d-flex align-items-center">
-          <div class="card-product flex-grow-1">
-            <%= image_tag offer.photo_url%>
-            <div class="card-product-infos">
-              <h5><%= offer.title %></h5>
-              <p><%= offer.description %></p>
-              <p><%= offer.date %></p>
-              <h5><%= offer.price %>€</h5>
-            </div>
-            <%= image_tag offer.user.avatar_url, class: "avatar"%>
-          </div>
-          <%#= link_to unbook_offer_path(offer), method: :patch  do%>
-            <%# <i class="far fa-window-close fa-4x p-2 disabled d-hidden"></i> %>
-          <%# end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <br/>
-  <h3>Mes Services Proposés</h3>
-  <div class="border rounded">
-    <% unless @offers.nil? %>
-    <% @offers.each do |offer| %>
-      <div class="d-flex align-items-center">
-        <div class="card-product  flex-grow-1">
-          <%= image_tag offer.photo_url%>
-          <div class="card-product-infos">
-            <h5><%= offer.title %></h5>
-            <p><%= offer.description %></p>
-            <p><%= offer.date %></p>
-            <h5><%= offer.price %>€</h5>
-          </div>
-        </div>
-        <%= link_to offer_path(offer), method: :delete do%>
-          <i class="fas fa-trash-alt  fa-4x p-2"></i>
-        <% end %>
-      </div>
-    <% end %>
-    <% end %>
-  </div>
-</div>
+  <% end %>
+
+

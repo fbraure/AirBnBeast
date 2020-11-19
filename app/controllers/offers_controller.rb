@@ -23,10 +23,19 @@ class OffersController < ApplicationController
   def mine
     # Trouver les offres que le vendeur a cree pour les afficher
     @user = current_user
-    @offers = @user.offers.reverse
-    # Trouver les offres que user a achete pour les afficher
-    @active_booked_offers = @user.active_booked_offers.reverse
-    @cancelled_booked_offers = @user.cancelled_booked_offers.reverse
+    @offer_type = params[:service]
+    case @offer_type
+    when "bought"
+      # Trouver les offres que user a achete pour les afficher
+      @offers = @user.active_booked_offers.reverse
+    when "cancelled"
+      @offers = @user.cancelled_booked_offers.reverse
+    when "proposed"
+      @offers = @user.offers.reverse
+    else
+      @offer_type = "bought"
+      @offers = @user.active_booked_offers.reverse
+    end
     # TODO : tri par date de modif
   end
 
