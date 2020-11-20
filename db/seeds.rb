@@ -112,7 +112,7 @@ Review.destroy_all
 Offer.destroy_all
 User.destroy_all
 puts "SECRET SEED: START POPULATE USERS"
-wagonner = ["lucienne", "https://i-mom.unimedias.fr/2020/09/16/grand-mere-yeta-une-nounou-d-enfer.jpg?auto=format%2Ccompress&crop=faces&cs=tinysrgb&fit=crop&h=600&w=1050"]
+wagonner = ["lucienne", "https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FFAC.2Fvar.2Ffemmeactuelle.2Fstorage.2Fimages.2Fsante.2Fmedecine-douce.2Ftrucs-de-grand-mere-36343.2F14432187-1-fre-FR.2Fces-trucs-de-grand-mere-qui-nous-aident-a-aller-mieux.2Ejpg/1200x1200/quality/80/crop-from/center/ces-remedes-de-grand-mere-qui-nous-aident-a-aller-mieux.jpeg"]
 nickname = nicknames.sample
 description = descriptions.sample
 titouan = User.create!(
