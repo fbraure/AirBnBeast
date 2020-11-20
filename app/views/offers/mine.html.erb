@@ -1,10 +1,10 @@
 <!--  Afficher les offres créé par current_user -->
 <div class="container" >
-  <div class="profil">
+  <div class="offer_profil">
     <%=image_tag(@user.avatar_url, class:"avatar-large")%>
     <div class="profil-content">
       <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      <p><%= @user.description %>
+      <p><%= @user.description %></p>
     </div>
   </div>
 <div class="container">
@@ -52,7 +52,7 @@
               <div class="target">
                 <% unless @offer_type == "proposed" %>
                   <p>Target:</p>
-                  <h4><%= offer.active_booking.first.present? ? offer.active_booking.first.target : "no target" %></h4>
+                  <h4><%= offer.active_booking.first.present? ? offer.active_booking.first.target : "Le premier qui rit" %></h4>
                 <% end %>
               </div>
               <h3><%= offer.price %>€</h3>
