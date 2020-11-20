@@ -37,7 +37,7 @@
     <% if @offer_type == offer_type %>
       <% @offers.each do |offer| %>
           <div class="card-product">
-            <%= cl_image_tag offer.photo_url%>
+            <%= cl_image_tag offer.photo_url.key%>
             <% if (@offer_type == "bought") || (@offer_type == "used")|| (@offer_type == "cancelled")%>
               <%= image_tag offer.user.avatar_url, class: "avatar"%>
             <% end %>
@@ -54,14 +54,14 @@
               <h3><%= offer.price %>€</h3>
             </div>
             <% if  @offer_type == "bought" %>
-              <%= link_to unbook_offer_path(offer), method: :patch do%>
+              <%= link_to unbook_offer_path(offer, service: "bought"), method: :patch do%>
               <i class="far fa-window-close fa-1x p-2"></i>
               <% end %>
             <% elsif  @offer_type == "proposed" %>
               <%= link_to edit_offer_path(offer), method: :get do%>
                 <i class="far fa-edit fa-1x p-2"></i>
               <% end %>
-              <%= link_to unbook_offer_path(offer), method: :delete do%>
+              <%= link_to offer_path(offer, service: "proposed"), method: :delete do%>
                 <i class="fas fa-trash-alt  fa-1x p-2"></i>
               <% end %>
             <% end %>
