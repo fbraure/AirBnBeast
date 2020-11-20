@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   def create
-    @booking = Booking.new
     @offer = Offer.find(params[:offer_id])
+    @booking = Booking.new(booking_params)
     @booking.offer = @offer
     @booking.user = current_user
     @booking.status = 1
@@ -10,5 +10,11 @@ class BookingsController < ApplicationController
     else
       render "offers/:id/"
     end
+  end
+
+  private
+
+  def booking_params
+    params.require(:booking).permit(:target)
   end
 end

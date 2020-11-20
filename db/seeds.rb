@@ -14,10 +14,10 @@ wagonners = [
   ["Florent", "https://avatars2.githubusercontent.com/u/65367849?v=4"],
   # ["Mael", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1601908758/rtos8nfz2zacii2dndkc.jpg"],
   ["Baptiste", "https://avatars3.githubusercontent.com/u/66240536?v=4"],
-  ["Julie", "https://avatars3.githubusercontent.com/u/66240536?v=4"],
+  ["Julie", "https://avatars1.githubusercontent.com/u/71645739?v=4"],
   ["Hugo", "https://avatars0.githubusercontent.com/u/69712961?v=4"],
   ["Romain", "https://avatars0.githubusercontent.com/u/33032199?v=4"],
-  ["Andy", "https://avatars1.githubusercontent.com/u/70142940?v=4"],
+  ["Andy", "https://avatars2.githubusercontent.com/u/68812083?v=4"],
   ["Alexis", "https://avatars1.githubusercontent.com/u/70142940?v=4"],
   ["Jean-Christophe", "https://avatars3.githubusercontent.com/u/70380868?v=4"],
   ["Maxime", "https://avatars1.githubusercontent.com/u/46489455?v=4"],
@@ -170,34 +170,40 @@ end
 end
 puts "SECRET SEED: START POPULATE BOOKINGS"
 Offer.all.shuffle.reject{|offer| offer.user == titouan || "#{titouan.first_name} #{titouan.last_name}" == offer.target}.first(5).each do |offer|
+  target = users.reject{|user| user == offer.user || user == titouan}.sample
   booking = Booking.new(
     status: [0, 1, 1, 1].sample,
     user: titouan,
-    offer: offer
+    offer: offer,
+    target: "#{target.first_name} #{target.last_name}"
   )
   if booking.save!
     unless booking.status
       Booking.new(
         status: 1,
         user: titouan,
-        offer: offer
+        offer: offer,
+        target: "#{target.first_name} #{target.last_name}"
       )
     end
   end
 end
 Offer.all.shuffle.first(18).each do |offer|
   buyer = users.reject{|user| user == offer.user && "#{user.first_name} #{user.last_name}" == offer.target}.sample
+  target = users.reject{|user| user == offer.user || user == buyer}.sample
   booking = Booking.new(
     status: [0, 1, 1, 1].sample,
     user: buyer,
     offer: offer,
+    target: "#{target.first_name} #{target.last_name}"
   )
   if booking.save!
     unless booking.status
       Booking.new(
         status: 1,
         user: buyer,
-        offer: offer
+        offer: offer,
+        target: "#{target.first_name} #{target.last_name}"
       )
     end
   end

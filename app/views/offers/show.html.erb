@@ -17,9 +17,13 @@
     <div class="zone-book">
       <h3><%= @offer.price %>€</h3>
       <div>
-        <input type="text" name="Target" id="Target" placeholder="Who's your target?">
+        <%= simple_form_for [ @offer, @booking ] do |f| %>
+        <%= f.input :target %>
+        <%= f.submit "BOOK", class: "btn btn-danger btn-book", id: "sweet-alert-demo" %>
+        <% end %>
+        <!-- <input type="text" name="Target" id="Target" placeholder="Who's your target?">
         <button id="sweet-alert-demo" class="btn btn-danger btn-book">Book me!</button>
-        <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, id: "book-link", class: "d-none" %>
+        <%= link_to "BOOK", offer_bookings_path(@offer), method: :POST, id: "book-link", class: "d-none" %> -->
       </div>
     </div>
 

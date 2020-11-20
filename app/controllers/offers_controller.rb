@@ -18,6 +18,7 @@ class OffersController < ApplicationController
 
   def show
     @seller = "#{@offer.user.first_name} #{@offer.user.last_name}"
+    @booking = Booking.new
   end
 
   def mine
