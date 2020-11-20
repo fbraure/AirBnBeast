@@ -56,7 +56,7 @@ class OffersController < ApplicationController
 
   def update
     @offer.update(offer_params)
-    redirect_to mine_offers_path
+    redirect_to mine_offers_path(service: "proposed")
   end
 
   def unbook
@@ -66,8 +66,7 @@ class OffersController < ApplicationController
        booking.status = 0
        booking.save
     end
-    # render :mine
-    redirect_to mine_offers_path
+    redirect_to mine_offers_path(service: "bought")
   end
 
   def destroy
