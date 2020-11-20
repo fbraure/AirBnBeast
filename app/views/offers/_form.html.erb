@@ -1,9 +1,9 @@
 <%= simple_form_for @offer do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :date %>
-  <%= f.input :photo_url , as: :file %>
+  <%= f.input :title, label_html: { class: 'text-color' }%>
+  <%= f.input :description, label_html: { class: 'text-color' } %>
+  <%= f.input :price, label_html: { class: 'text-color' } %>
+  <%= f.input :date, label_html: { class: 'text-color' } %>
+  <%= f.input :photo_url , as: :file , label_html: { class: 'text-color' }, hint_html: { class: 'text-color' }%>
   <%= f.button :submit, class: 'btn btn-danger' %>
 <% end %>
 
