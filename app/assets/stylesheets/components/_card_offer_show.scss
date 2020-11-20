@@ -9,11 +9,13 @@
   padding: 0 24px;
   p {
     margin-bottom: 0px;
-    font-size: 14px;
+    font-size: 18px;
+    color: $light-gray;
   }
   h2 {
     margin-bottom: 0px;
-    font-size: 22px;
+    font-size: 24px;
+    color: $red;
   }
 }
 
@@ -52,17 +54,27 @@
 .card-offer-show .card-offer-show-infos {
   padding: 16px;
   height: 100%;
+  flex-grow: 1;
+  position: relative;
+  .target{
+    position: absolute;
+    bottom: 0;
+  }
+  p{
+    font-size: 16px;
+  }
 }
+
 
 .card-offer-show .zone-book {
   background-color: white;
   padding: 16px;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 1;
   text-align: center;
   .btn-book {
-    width: 150px;
+    width: 207.73px;
   }
 }
 
