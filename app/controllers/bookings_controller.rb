@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.status = 1
     if @booking.save!
-      redirect_to offers_path
+      redirect_to mine_offers_path
     else
       render "offers/:id/"
     end
