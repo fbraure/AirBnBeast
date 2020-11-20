@@ -5,10 +5,10 @@ class BookingsController < ApplicationController
     @booking.offer = @offer
     @booking.user = current_user
     @booking.status = 1
-    if @booking.save!
+    if @booking.save
       redirect_to mine_offers_path
     else
-      render "offers/:id/"
+      render "offers/show"
     end
   end
 
