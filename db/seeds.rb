@@ -112,7 +112,7 @@ Review.destroy_all
 Offer.destroy_all
 User.destroy_all
 puts "SECRET SEED: START POPULATE USERS"
-wagonner = ["Titouan", "https://avatars3.githubusercontent.com/u/71375669?v=4"]
+wagonner = ["lucienne", "https://i-mom.unimedias.fr/2020/09/16/grand-mere-yeta-une-nounou-d-enfer.jpg?auto=format%2Ccompress&crop=faces&cs=tinysrgb&fit=crop&h=600&w=1050"]
 nickname = nicknames.sample
 description = descriptions.sample
 titouan = User.create!(
