@@ -24,34 +24,14 @@ require("channels")
 
 // External imports
 import "bootstrap";
-import { initSweetalert } from '../plugins/init_sweetalert';
 
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
-
-
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-  initSweetalert('#sweet-alert-demo', {
-  title: "Your Target is locked!",
-  text: "Beware the vengeance of your Target!",
-  icon: "success"
-  }, (value) => {
-    if (value) {
-      const link = document.querySelector('#book-link');
-      link.click();
-    };
-  });
-});
-
-import { loadDynamicBannerText } from '../components/banner';
+  // // Internal imports
+import {addSoundsOnClick} from "../components/sounded_button";
+import { superInitSweetAlert } from '../plugins/init_sweetalert';
+import { loadDynamicBannerText } from '../components/banner.js';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your JS functions here
-  // [...]
+  superInitSweetAlert();
+  addSoundsOnClick();
   loadDynamicBannerText();
 });
-
-
-
