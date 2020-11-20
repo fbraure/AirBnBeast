@@ -4,6 +4,12 @@
   belongs_to :user
   has_one_attached :photo_url
 
+  has_many(
+    :active_booking,
+    -> { where('status= 1') },
+    class_name: "Booking"
+  )
+
   include PgSearch::Model
   # Following Gem Setup
   pg_search_scope :search_by_title_and_decription,
