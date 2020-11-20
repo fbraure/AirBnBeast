@@ -14,9 +14,9 @@
       <h2><%= @offer.title %></h2>
       <p><%= @offer.description %></p>
       <p><%= @offer.date %></p>
-      <div class="target my-3">
+      <div class="target">
         <%= simple_form_for [ @offer, @booking ], :html => {class: "form-inline mx-5"} do |f| %>
-        <%= f.input :target, placeholder: "Balance ta Target ici", label:"Target" %>
+        <%= f.input :target, placeholder: "Balance ta Target ici", label:"Target", input_html: { class: 'mr-5' } %>
         <%= f.submit "BOOK", class: "btn btn-danger btn-book", id: "sweet-alert-demo" %>
         <% end %>
       </div>
