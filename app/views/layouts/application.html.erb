@@ -15,7 +15,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between">
+    <nav class="navbar navbar-expand fixed-top navbar-light d-flex justify-content-between navbar-lewagon">
       <%= link_to (user_signed_in? ? offers_path : root_path), class:"d-flex align-items-center navbar-brand m-0 p-0" do%>
         <%= image_tag("logo.png", alt: "AirBnBeast logo")%>
         <h3 id="nav-title">AirBnBeast</h3>
