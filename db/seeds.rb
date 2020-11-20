@@ -12,7 +12,6 @@ wagonners = [
   ["charlotte", "https://avatars2.githubusercontent.com/u/70255612?v=4"],
   ["matthias", "https://avatars2.githubusercontent.com/u/48900320?v=4"],
   ["Florent", "https://avatars2.githubusercontent.com/u/65367849?v=4"],
-  # ["Mael", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1601908758/rtos8nfz2zacii2dndkc.jpg"],
   ["Baptiste", "https://avatars3.githubusercontent.com/u/66240536?v=4"],
   ["Julie", "https://avatars1.githubusercontent.com/u/71645739?v=4"],
   ["Hugo", "https://avatars0.githubusercontent.com/u/69712961?v=4"],
@@ -24,14 +23,13 @@ wagonners = [
   ["Remi", "https://avatars1.githubusercontent.com/u/55163524?v=4"],
   ["Jasmine", "https://avatars1.githubusercontent.com/u/71343481?v=4"],
   ["Thomas", "https://avatars0.githubusercontent.com/u/69688905?v=4"],
-  # ["manu", " https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1535441137/yrwdxzada2biesrzqgeb.jpg"],
+  ["Manu", "https://i1.sndcdn.com/avatars-000133068396-aq6ll1-t500x500.jpg"],
   ["claudine", "https://avatars0.githubusercontent.com/u/34744530?v=4"],
-  # ["Benoit", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1572301074/y7bljjqfaifhvzaqyvza.jpg"],
-  # ["Sylvain", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1540307110/x6vx55r27uspuk5qllnh.jpg"],
+  ["Benoit", "https://image-uviadeo.journaldunet.com/image/450/2069162077/1192855.jpg"],
+  ["Sylvain", "https://image-uviadeo.journaldunet.com/image/450/1743437682/236879.jpg"],
   ["Charles-Henri", "https://avatars1.githubusercontent.com/u/31434839?v=4"],
-  # ["Jonathan", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1495543370/jerclbbakoluf9xjpkrc.jpg"],
-  ["Bertrand", "https://avatars1.githubusercontent.com/u/9798952?v=4"],
-  # ["Valentin ", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1574945472/mw3lw9ugd3aqt7abs7pk.jpg"]
+  ["Jonathan", "https://avatars1.githubusercontent.com/u/18291679?s=460&u=c800f84e2fe98df92fe1a99d3fb96974c8651b71&v=4"],
+  ["Bertrand", "https://avatars1.githubusercontent.com/u/9798952?v=4"]
 ]
 nicknames = [
   # Le boolean est vrai si le NickName se place Après le prénom
@@ -124,7 +122,7 @@ titouan = User.create!(
   description: description
   # is_seller: true
 )
-wagonners.shuffle.first(18).each do |wagonner|
+wagonners.shuffle.each do |wagonner|
   nickname = nicknames.sample
   description = descriptions.sample
   User.create!(
