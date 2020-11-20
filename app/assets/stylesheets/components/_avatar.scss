@@ -3,6 +3,10 @@
   border-radius: 50%;
   margin: 0 10px 0 10px;
   text-align: center;
+  &:hover {
+    width: 45px;
+    height: 45px;
+  }
 }
 .avatar-large {
   width: 64px;

@@ -26,7 +26,7 @@ $gradient-radial: radial-gradient(#dc851fff, #f0eff4ff, #bd1e1eff, #393d3fff, #1
       <%= image_tag('https://images.glaciermedia.ca/polopoly_fs/1.1746678.1422559530!/fileImage/httpImage/image.png_gen/derivatives/landscape_804/target.png', height: '250') %>
     <% end %>
     </div>
-    <div class="container">
+    <div>
       <% unless user_signed_in? %>
         <div id="sign-buttons">
           <%= link_to "SignIn", new_user_session_path, class: "btn btn-danger"%>
