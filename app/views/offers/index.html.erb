@@ -24,17 +24,16 @@
           <%=cl_image_tag(offer.photo_url.key, class:"img-fluid")%>
           <div class="card-trip-infos">
             <div>
+              <h4><%=offer.user.first_name%> - <%=offer.user.last_name%></h4>
               <h2><%=offer.title%></h2>
               <p><%=offer.description%></p>
               <p><%=offer.date%></p>
-              <p><%=offer.user.first_name%> - <%=offer.user.last_name%></p>
             </div>
-
-            <%= image_tag(offer.user.avatar_url, class:"card-trip-user avatar-bordered")%>
+            <%= image_tag(offer.user.avatar_url, class:"card-trip-user avatar-border")%>
           </div>
           <h3 class="card-trip-pricing"><%=offer.price%>€</h3>
       <% end %>
-    <%end%>
+    <% end %>
   </div>
 </div>
 
