@@ -7,7 +7,7 @@
       <p><%= @user.description %>
     </div>
   </div>
-<div class="container">
+
   <ul class="list-inline tabs-underlined">
     <li>
       <%= link_to "Mes Services Achetés", mine_offers_path(params: {service: "bought"}), class: "tab-underlined #{"active" if @offer_type == "bought"}" %>
