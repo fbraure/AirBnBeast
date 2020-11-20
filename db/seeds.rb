@@ -137,7 +137,7 @@ wagonners.shuffle.each do |wagonner|
 end
 puts "SECRET SEED: START POPULATE OFFERS"
 users = User.all
-8.times do
+5.times do
   prank = pranks.sample
   target = users.reject{|user| user == titouan }.sample
   offer = Offer.new(
